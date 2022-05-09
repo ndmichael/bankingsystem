@@ -26,8 +26,8 @@ class SelfLoginForm (LoginForm):
 
 
 class MyCustomSignupForm(SignupForm):
-    field_order = ['first_name', 'last_name',
-                   'email', 'username', 'password1', 'password2', 'balance','country', 'address', 'dob','image']
+    # field_order = ['first_name', 'last_name',  'username',
+    #                'email', 'password1', 'password2', 'balance','country', 'address', 'dob','image']
     first_name = forms.CharField(max_length=30, label='First Name')
     last_name = forms.CharField(max_length=30, label='Last name')
     balance = forms.DecimalField(max_digits=10, decimal_places=2)
@@ -61,6 +61,15 @@ class MyCustomSignupForm(SignupForm):
         self.fields["last_name"].widget.attrs["placeholder"] = ""
         self.fields["email"].widget.attrs["placeholder"] = ""
         self.fields["username"].widget.attrs["placeholder"] = ""
+
+        self.fields["first_name"].widget.attrs.update({'class': 'form-control-lg'})
+        self.fields["last_name"].widget.attrs.update({'class': 'form-control-lg'})
+        self.fields["email"].widget.attrs.update({'class': 'form-control-lg'})
+        self.fields["username"].widget.attrs.update({'class': 'form-control-lg'})
+        self.fields["balance"].widget.attrs.update({'class': 'form-control-lg'})
+        self.fields["country"].widget.attrs.update({'class': 'form-control-lg'})
+
+
 
 # class MyCustomSignupForm(SignupForm):
 #         field_order = ['first_name', 'last_name', 'password1', 'password2', 'username', 'email',]
