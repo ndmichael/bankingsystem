@@ -7,6 +7,7 @@ from django_countries.fields import CountryField
 from django.utils import timezone
 from . import models
 from django_countries import widgets, countries
+from random import randrange
 
 
 
@@ -40,10 +41,16 @@ class MyCustomSignupForm(SignupForm):
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
         user.save()
+        number = [randrange(10) for i in range(10)]
+        acc_number = ''.join(str(i) for i in number)
+        pin = acc_number[:4]
         models.Client.objects.create(user=user, balance=self.cleaned_data['balance'], 
                 address=self.cleaned_data['address'], 
                 country=self.cleaned_data['country'], 
                 dob=self.cleaned_data['dob'],
+                account_number = acc_number,
+                transfer_pin = pin
+
         )
         return user
 
