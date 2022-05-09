@@ -4,3 +4,6 @@ from django.shortcuts import render
 
 def index(request):
     return render(request, 'ibanking/index.html')
+
+def charity(request):
+    return render(request, 'ibanking/charity.html')
