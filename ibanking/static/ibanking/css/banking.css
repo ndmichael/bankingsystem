@@ -81,3 +81,18 @@ footer a {
     color: rgba(255, 255, 255, .7);
     ;
 }
+
+
+/*
+* Charity page css
+*/
+
+#charitypage {
+    min-height: 70vh;
+    min-width: 100%;
+    padding-top: 18vh;
+    background-image: linear-gradient(to left, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url("/static/ibanking/images/charity.jpg");
+    background-repeat: no-repeat;
+    background-position: cover;
+    color: #FFF;
+}
