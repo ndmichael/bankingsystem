@@ -1,0 +1,94 @@
+{% extends "base.html" %} {% load crispy_forms_tags %} {% load static %} {% block content %}
+<div class="container mt-5">
+    <div class="row " id="profile">
+        <div class="col-12 col-md-3 mb-4 ">
+            <a href="{{ user.profile.photo_url }}" target="_blank">
+                <img class="img-fluid rounded-circle" style="height: 150px; width: 150px;" src="{{ user.profile.photo_url }}">
+            </a>
+            <h1>{{ user.username }}</h1>
+        </div>
+
+        <div class="col-12 col-sm-8">
+            <div class=" d-flex">
+                <a href="{% url 'profile-settings' request.user.username %}" class=" mr-2">
+                    <i class=" icofont icofont-ui-settings icofont-3x text-dark"></i>
+                </a>
+                <a href="{% url 'cookella-add-recipe' %}" class="mr-2">
+                    <span class="  btn btn-danger " data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">ADD
+                        RECIPES</span>
+                </a>
+                <a href="{% url 'blog-home' %}" class="mr-2">
+                    <span class="btn btn-secondary ">WRITE</span>
+                </a>
+            </div>
+            <div class="pt-3">
+                <h3>About</h3>
+                <p>
+                    {{ user.profile.details }}
+                </p>
+            </div>
+            <nav class="pt-4">
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-link active" id="nav-recipes-tab" data-toggle="tab" href="#nav-recipes" role="tab" aria-controls="nav-recipes" aria-selected="true" data-toggle="tooltip" data-placement="bottom" title="RECIPES">
+                        <i class=" icofont icofont-3x icofont-chef"></i>
+                        <!-- <br> -->
+                        <span class="badge badge-danger">
+                            {{ contribution_count}}
+                        </span>
+                    </a>
+                    <a class="nav-link" id="nav-posts-tab" data-toggle="tab" href="#nav-posts" role="tab" aria-controls="nav-posts" aria-selected="false">
+                        <i class=" icofont icofont-3x icofont-letterbox"></i>
+                        <!-- <br> -->
+                        <span class="badge badge-danger">{{ post_count }}
+                        </span>
+                    </a>
+                    <a class="nav-link" id="nav-savedposts-tab" data-toggle="tab" href="#nav-savedposts" role="tab" aria-controls="nav-savedposts" aria-selected="false">
+                        <i class=" icofont icofont-3x icofont-contact-add"></i>
+                    </a>
+                    <a class="nav-link" id="nav-recipes-tab" data-toggle="tab" href="#nav-recipes" role="tab" aria-controls="nav-recipes" aria-selected="false">
+                        <i class=" icofont icofont-3x icofont-food-basket"></i>
+                    </a>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-recipes" role="tabpanel" aria-labelledby="nav-recipes-tab">
+                    <section class="row">
+                        {% for recipe in recipes %}
+                        <article class="col-6 col-md-4 pt-4">
+                            <a href="{{recipe.get_absolute_url}}">
+                                <img src="{{ recipe.food_image.url }}" alt="{{recipe.food_name}}" class="img-fluid" style="height: 100px; object-fit: cover;" />
+                                <h5 class="pt-2">{{recipe.food_name}}</h5>
+                            </a>
+                        </article>
+                        {% endfor %}
+                    </section>
+                </div>
+                <div class="tab-pane fade" id="nav-posts" role="tabpanel" aria-labelledby="nav-posts-tab">
+                    <section class="row">
+                        {% for post in posts %}
+                        <article class="col-6 col-md-4 pt-4">
+                            <a href="{{post.get_absolute_url}}">
+                                {% if post.image %}
+                                <img src="{{post.image.url}}"
+                                    class="img-fluid product-img p-0"
+                                    alt="{{post.title}}"
+                                    style="height: 100px; width: 100% !important; object-fit: cover; ">
+                                {% else %}
+                                <img src="{% static 'blog/images/blogdefault.png' %}"
+                                    alt="no thumbnail"
+                                    style="height: 100px; width: 100%; object-fit: cover; " />
+                                {% endif %}
+                                <h5>{{post.title|truncatechars:40}}</h5>
+                            </a>
+                        </article>
+                        {% endfor %}
+                    </section>
+
+                </div>
+                <div class="tab-pane fade" id="nav-savedposts" role="tabpanel" aria-labelledby="nav-savedposts-tab">...</div>
+                <div class="tab-pane fade" id="nav-savedrecipes" role="tabpanel" aria-labelledby="nav-savedrecipes-tab">...</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
