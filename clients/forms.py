@@ -57,8 +57,10 @@ class MyCustomSignupForm(SignupForm):
     def __init__(self, *args, **kwargs):
 
         super(MyCustomSignupForm, self).__init__(*args, **kwargs)
-        self.fields["first_name"].widget.attrs["placeholder"] = "first name"
-        self.fields["last_name"].widget.attrs["placeholder"] = "last name"
+        self.fields["first_name"].widget.attrs["placeholder"] = ""
+        self.fields["last_name"].widget.attrs["placeholder"] = ""
+        self.fields["email"].widget.attrs["placeholder"] = ""
+        self.fields["username"].widget.attrs["placeholder"] = ""
 
 # class MyCustomSignupForm(SignupForm):
 #         field_order = ['first_name', 'last_name', 'password1', 'password2', 'username', 'email',]
