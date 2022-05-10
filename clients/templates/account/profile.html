@@ -1,0 +1,83 @@
+{% extends 'base.html' %} {% block content %}
+
+<section>
+    <div class="container py-5">
+        <div class="row">
+            <article class="col-12 col-sm-4 col-md-4">
+                <img class="img-fluid shadow" style="height: 350px; width: 100%; object-fit: cover;" src="{{ user.profile.photo_url }}">
+                <div class=" text-center pt-4">
+                    <p>Your user ID: <span class="text-danger "><b>{{user.username}}</b></span>
+                    </p>
+                </div>
+            </article>
+            <article class="col-12 col-sm-8 col-md-5">
+                <table class="table table-striped">
+                    <h5 class="text-primary">USER INFORMATIONS</h5>
+                    <tbody>
+                        <tr>
+                            <td>Name</td>
+                            <td>{{ user.last_name}} {{ user.first_name}} </td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>{{ user.email}}</td>
+                        </tr>
+                        <tr>
+                            <td>Address</td>
+                            <td>{{ user.profile.address}}</td>
+                        </tr>
+                        <tr>
+                            <td>Country</td>
+                            <td>{{ user.profile.country.name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Date Of Birth</td>
+                            <td>{{ user.profile.dob}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <table class="table">
+                    <h5 class="text-primary">BANK INFOS</h5>
+                    <tbody>
+                        <tr>
+                            <td>Account Number</td>
+                            <td>{{ user.profile.account_number}}</td>
+                        </tr>
+                        <tr>
+                            <td>IBAN</td>
+                            <td>{{ user.profile.country}}51 SOUTH 2123 {{ user.profile.account_number}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Pin</td>
+                            <td>{{ user.profile.transfer_pin}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </article>
+            <article class="col-12 col-md-3 text-center">
+                <div class="dropdown">
+                    <a href="#" class=" btn btn-info btn-lg">
+                        Make Transfer
+                    </a>
+                </div>
+                <div class="dropdown pt-4">
+                    <a class="btn btn-danger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-gear text-light"></i>
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li><a class="dropdown-item" href="#">change
+                                password</a></li>
+                        <li><a class="dropdown-item" href="#">Change pin</a>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

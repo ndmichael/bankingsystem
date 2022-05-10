@@ -16,5 +16,12 @@ class Client(models.Model):
     created = models.DateTimeField(default=timezone.now)
     image = models.ImageField(default='avatar.png', upload_to='profile_pics/', blank=True, null=True)
 
+    @property
+    def photo_url(self):
+        if self.image and hasattr(self.image, 'url'):
+            return self.image.url
+        else:
+            return "/media/avatar.png"
+
     def __str__(self):
         return f'{self.user.username}'

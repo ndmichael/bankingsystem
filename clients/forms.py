@@ -61,6 +61,8 @@ class MyCustomSignupForm(SignupForm):
         self.fields["last_name"].widget.attrs["placeholder"] = ""
         self.fields["email"].widget.attrs["placeholder"] = ""
         self.fields["username"].widget.attrs["placeholder"] = ""
+        self.fields["password1"].widget.attrs["placeholder"] = ""
+        self.fields["password2"].widget.attrs["placeholder"] = ""
 
         self.fields["first_name"].widget.attrs.update({'class': 'form-control-lg'})
         self.fields["last_name"].widget.attrs.update({'class': 'form-control-lg'})
