@@ -24,15 +24,24 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                {% if user.is_authenticated and request.user.is_staff == True %}
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'adminpage' %}">
+                            <b>Admin</b>
+                        </a>
+                    </li>
+                </ul>
+                {% endif %}
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" href="">
-                            Home
+                            Investing
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="{% url 'charity' %}">
                             Charity
                         </a>
                     </li>
@@ -41,11 +50,26 @@
                             ContactUs
                         </a>
                     </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                             <b>Welcome {{ request.user.last_name }}</b>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'userprofile' request.user.username %}">
+                                <p>Profile</p>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'account_logout' %}">Logout </a>
+                        </div>
+                    </li>
+                    {% else %}
                     <li class="nav-item">
-                        <a class="nav-link btn btn-danger" href="">
+                        <a class="nav-link btn btn-danger" href="{% url 'account_login' %}">
                             SIGN IN NOW
                         </a>
                     </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
