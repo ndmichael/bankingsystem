@@ -96,3 +96,24 @@ footer a {
     background-position: cover;
     color: #FFF;
 }
+
+
+/*
+*
+*  admin css
+*
+*/
+
+#staffadmin {
+    min-height: 100vh;
+    background: seagreen;
+}
+
+#staffadmin a {
+    display: block;
+    color: inherit;
+}
+
+#staffadmin a .bi {
+    font-size: 3rem;
+}
