@@ -73,20 +73,4 @@ class MyCustomSignupForm(SignupForm):
 
 
 
-# class MyCustomSignupForm(SignupForm):
-#         field_order = ['first_name', 'last_name', 'password1', 'password2', 'username', 'email',]
-#         def __init__(self, *args, **kwargs):
-#             super(MyCustomSignupForm, self).__init__(*args, **kwargs)
-#             self.fields['first_name'] = forms.CharField(required=True)
-#             self.fields['last_name'] = forms.CharField(required=True)
-#             self.fields["email"].label = ''
-#             self.fields["username"].label = ''
-#             self.fields["password1"].label = ''
-#             self.fields["password2"].label = ''
-#             default_field_order = ['first_name', 'last_name', 'password1', 'password2', 'username', 'email',]
 
-#         def save(self, request):
-#             field_order = ['first_name', 'last_name', 'password1', 'password2', 'username', 'email',]
-#             first_name = self.cleaned_data['first_name']
-#             user = super(MyCustomSignupForm, self).save(request)
-#             return user

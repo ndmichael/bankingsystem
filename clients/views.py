@@ -15,3 +15,6 @@ def profile(request, username):
         "profile": profile,
     }
     return render(request, 'account/profile.html', context)
+
+def admin(request):
+    return render(request, 'users/admin.html')
