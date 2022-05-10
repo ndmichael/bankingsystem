@@ -1,0 +1,88 @@
+{% extends 'base.html' %}{% block content %}
+
+<section id="staffadmin" class=" bg-light">
+    <div class="container py-5">
+        <section class="row py-4">
+            <article class="col-6">
+                <h1 class="h3"><small>Welcome</small> <span class="text-danger">Tony</span></h1>
+                <p>Manage All <b>Accounts</b> Here</p>
+            </article>
+            <article class="col-6 text-end">
+                <a href="#" class=" btn btn-danger" style=" color: white; display: inline-block;">
+                    Add New Clients
+                </a>
+            </article>
+        </section>
+        <section class="row">
+            <article class="col-6 col-md-4">
+                <a href="#" class="border py-4 px-3 rounded-4 bg-white ">
+                    <div class=" d-flex  justify-content-around">
+                        <i class="bi bi-person-circle text-danger "></i>
+                        <div class="ps-3">
+                            <h4>Manage All Accounts</h4>
+                            <p class="text-muted">
+                                delete, change pin, password...
+                            </p>
+                            <span><b>123</b> Accounts</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+            <article class="col-4">
+                <a href="#" class="border py-4 px-3 rounded-4 bg-white ">
+                    <div class=" d-flex  justify-content-around">
+                        <i class="bi bi-credit-card text-primary  "></i>
+                        <div class="ps-3">
+                            <h4>Transfer Request</h4>
+                            <p class="text-muted">
+                                Accept or Reject...
+                            </p>
+                            <span><b>123</b> Pending</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+            <article class="col-4">
+                <a href="#" class="border py-4 px-3 rounded-4 bg-white ">
+                    <div class=" d-flex  justify-content-around">
+                        <i class="bi bi-currency-exchange text-secondary "></i>
+                        <div class="ps-3">
+                            <h4>Load Balance</h4>
+                            <p class="text-muted">
+                                load, update balance...
+                            </p>
+                            <span><b>123</b> Active Accounts</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+        </section>
+        <section class="row mt-5">
+            <div class="col-12">
+                <h4 class="pt-4">List Of Recently Created Clients</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Country</th>
+                            <th>Acc Number</th>
+                            <th>Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Account Number</td>
+                            <td>{{ user.profile.account_number}}</td>
+                            <td>IBAN</td>
+                            <td>IBAN</td>
+                            <td>IBAN</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</section>
+
+{% endblock %}
