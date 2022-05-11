@@ -1,0 +1,54 @@
+{% extends 'base.html' %} {% block content %}
+
+<section>
+    <div class="container py-5">
+        <div class="row">
+            <article class="col-12">
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th scope="col">Full Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Country</th>
+                            <th scope="col">Acc Number</th>
+                            <th scope="col">Balance</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for client in clients %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'userprofile' user.username %}">
+                                    {{client.user.last_name}}
+                                    {{client.user.first_name}}
+                                </a>
+                            </td>
+                            <td>
+                                {{client.user.email}}
+                            </td>
+                            <td>{{ client.country.name}}</td>
+                            <td>{{client.account_number }}</td>
+                            <td>&#36;{{client.balance}}</td>
+                            <td>
+                                <a href="#" class="btn btn-warning">
+                                    Update
+                                </a>
+                                <a href="#" class="btn btn-danger">
+                                    Deactivate
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <h1>No Registered Clients</h1>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </article>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
