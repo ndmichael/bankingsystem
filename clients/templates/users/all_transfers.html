@@ -1,0 +1,43 @@
+{% extends 'base.html' %} {% block content %}
+<section>
+    <div class="container">
+        <section class="row">
+            <article class="col-8 mx-auto">
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th scope="col">Full Name</th>
+                            <th scope="col">Acc Number</th>
+                            <th scope="col">Balance</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for client in clients %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'userprofile' client.user.username %}">
+                                    {{client.user.last_name}}
+                                    {{client.user.first_name}}
+                                </a>
+                            </td>
+                            <td>{{client.account_number }}</td>
+                            <td>&#36;{{client.balance}}</td>
+                            <td>
+                                <a href="#" class="btn btn-warning">
+                                    LOAD ACCOUNT
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <h1>No Transfers</h1>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </article>
+        </section>
+    </div>
+</section>
+{% endblock %}
