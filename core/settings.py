@@ -162,4 +162,6 @@ ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/"
 
 ACCOUNT_FORMS = {"signup": "clients.forms.MyCustomSignupForm"}
 
+USE_THOUSAND_SEPARATOR = True
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
