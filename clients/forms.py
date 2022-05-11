@@ -11,6 +11,12 @@ from random import randrange
 
 
 
+gender = (
+        ('male', 'MALE'),
+        ('female', 'FEMALE')
+    )
+
+
 class DateInput(forms.DateInput):
     input_type = 'date'
 
@@ -34,6 +40,7 @@ class MyCustomSignupForm(SignupForm):
     address = forms.CharField(widget=forms.Textarea(attrs={'name':'body', 'rows':'3'}))
     country = CountryField(blank=True).formfield()
     dob = forms.DateField(widget=DateInput)
+    gender = forms.ChoiceField(choices=gender)
     image = forms.ImageField(required=False)
 
     def save(self, request):
@@ -44,10 +51,13 @@ class MyCustomSignupForm(SignupForm):
         number = [randrange(10) for i in range(10)]
         acc_number = ''.join(str(i) for i in number)
         pin = acc_number[:4]
-        models.Client.objects.create(user=user, balance=self.cleaned_data['balance'], 
+        models.Client.objects.create(
+                user=user, 
+                balance=self.cleaned_data['balance'], 
                 address=self.cleaned_data['address'], 
                 country=self.cleaned_data['country'], 
                 dob=self.cleaned_data['dob'],
+                gender = self.cleaned_data['gender'],
                 account_number = acc_number,
                 transfer_pin = pin
 
