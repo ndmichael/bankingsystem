@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from .models import Client
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from allauth.account.forms import SignupForm, LoginForm
@@ -82,5 +83,16 @@ class MyCustomSignupForm(SignupForm):
         self.fields["country"].widget.attrs.update({'class': 'form-control-lg'})
 
 
+
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['last_name', 'first_name', 'username']
+
+
+class ClientUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Client
+        fields = ['image', 'gender', 'dob']
 
 
