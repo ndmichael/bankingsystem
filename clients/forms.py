@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from .models import Client
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UsernameField
 from allauth.account.forms import SignupForm, LoginForm
 from django_countries.fields import CountryField
 from django.utils import timezone
@@ -98,3 +98,34 @@ class ClientUpdateForm(forms.ModelForm):
 
 class DeactivateUser(forms.Form):
     deactivate = forms.BooleanField()
+
+
+
+class UserForm(UserCreationForm):
+    email = forms.EmailField()
+    username = forms.CharField()
+    username = UsernameField(
+        label='User ID',
+        widget=forms.TextInput(attrs={'autofocus': True})
+    )
+    class Meta:
+        model = User
+        fields = ['username','email', 'first_name', 'last_name', 'password1', 'password2']
+    
+    def __init__(self, *args, **kwargs):
+        super(UserForm, self).__init__(*args, **kwargs)
+
+        for fieldname in ['username', 'password1', 'password2']:
+            self.fields[fieldname].help_text = None
+
+
+class ClientRegisterForm(forms.ModelForm):
+    balance = forms.DecimalField(max_digits=10, decimal_places=2)
+    address = forms.CharField(widget=forms.Textarea(attrs={'name':'body', 'rows':'3'}))
+    country = CountryField(blank=True).formfield()
+    dob = forms.DateField(widget=DateInput)
+    gender = forms.ChoiceField(choices=gender)
+    image = forms.ImageField(required=False)
+    class Meta:
+        model = Client
+        fields =  ['balance', 'address', 'country', 'dob', 'gender', 'image']

@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from .models import Client
 from django.contrib import messages
-from .forms import ClientUpdateForm, UserUpdateForm, DeactivateUser
+from .forms import ClientUpdateForm, UserUpdateForm, DeactivateUser, ClientRegisterForm, UserForm
 from clients.models import Client, Transfer
+from random import randrange
 
 
 # Create your views here.
@@ -21,6 +22,35 @@ def profile(request, username):
 
 def admin(request):
     return render(request, 'users/admin.html')
+
+
+def register(request):
+    if request.method == "POST":
+        u_form = UserForm(request.POST)
+        c_form = ClientRegisterForm(request.POST,  request.FILES)
+        if u_form.is_valid() and c_form.is_valid():
+            user = u_form.save()
+            client = c_form.save(commit=False)
+            number = [randrange(10) for i in range(10)]
+            acc_number = ''.join(str(i) for i in number)
+            pin = acc_number[:4]
+            client.user = user
+            client.transfer_pin = pin
+            client.account_number = acc_number
+            client.save()
+            username = c_form.cleaned_data.get("username")
+            messages.success(
+                request, f"Account has been created for {username} you  can now login."
+            )
+            return redirect("all_users")
+    else:
+        u_form = UserForm()
+        c_form = ClientRegisterForm()
+    context = {
+        'c_form': c_form,
+        'u_form': u_form
+    }
+    return render(request, 'users/register.html', context)
 
 def all_users(request):
     if request.POST:
