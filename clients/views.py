@@ -38,7 +38,7 @@ def register(request):
             client.transfer_pin = pin
             client.account_number = acc_number
             client.save()
-            username = c_form.cleaned_data.get("username")
+            username = u_form.cleaned_data.get("username")
             messages.success(
                 request, f"Account has been created for {username} you  can now login."
             )
