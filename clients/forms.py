@@ -23,9 +23,10 @@ class DateInput(forms.DateInput):
 
 
 class SelfLoginForm (LoginForm):
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
+        self.fields["login"] = forms.CharField(label='user ID')
         self.fields["login"].widget.attrs.update(
             {'class': 'form-control-lg rounded-pill border-0 shadow-sm'})
         self.fields["password"].widget.attrs.update(
