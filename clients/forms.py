@@ -96,3 +96,5 @@ class ClientUpdateForm(forms.ModelForm):
         fields = ['image', 'gender', 'dob']
 
 
+class DeactivateUser(forms.Form):
+    deactivate = forms.BooleanField()

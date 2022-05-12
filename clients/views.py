@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from .models import Client
 from django.contrib import messages
-from .forms import ClientUpdateForm, UserUpdateForm
+from .forms import ClientUpdateForm, UserUpdateForm, DeactivateUser
 from clients.models import Client, Transfer
 
 
@@ -23,15 +23,25 @@ def admin(request):
     return render(request, 'users/admin.html')
 
 def all_users(request):
-    if request.GET.get('post_id'):
-        username = request.GET.get('post_id')
-        user = get_object_or_404(
-        User, username='username'
-        )
+    if request.POST:
+        username = request.POST.get('id')
+        # user = User.objects.get(username=username)
+        user = get_object_or_404(User, username=username)
+        if  request.POST.get('deactivate') == 'on':
+            print(user.is_active)
+            user.is_active = False
+            user.save()
+            print(user.is_active)
+        return redirect(
+                "all_users"
+            )  
+    else:
+        deactivate_form = DeactivateUser()
     
     clients = Client.objects.all().filter(user__is_active=True)
     context = {
         'clients': clients,
+        'd_form': deactivate_form
     }
     return render(request, 'users/all_users.html', context)
 
