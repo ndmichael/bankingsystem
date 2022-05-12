@@ -5,9 +5,13 @@ from django.contrib import messages
 from .forms import ClientUpdateForm, UserUpdateForm, DeactivateUser, ClientRegisterForm, UserForm
 from clients.models import Client, Transfer
 from random import randrange
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+
+
+@login_required
 def profile(request, username):
     user = get_object_or_404(
         User, username=username
@@ -20,11 +24,24 @@ def profile(request, username):
     }
     return render(request, 'account/profile.html', context)
 
+
+@login_required
 def admin(request):
+    if not request.user.is_staff:
+        messages.error(
+                request, f"You do not have permission to access this page."
+            )
+        return redirect("/")
     return render(request, 'users/admin.html')
 
 
+@login_required
 def register(request):
+    if not request.user.is_staff:
+        messages.error(
+                request, f"You do not have permission to access this page."
+            )
+        return redirect("/")
     if request.method == "POST":
         u_form = UserForm(request.POST)
         c_form = ClientRegisterForm(request.POST,  request.FILES)
@@ -52,7 +69,13 @@ def register(request):
     }
     return render(request, 'users/register.html', context)
 
+@login_required
 def all_users(request):
+    if not request.user.is_staff:
+        messages.error(
+                request, f"You do not have permission to access this page."
+            )
+        return redirect("/")
     if request.POST:
         username = request.POST.get('id')
         # user = User.objects.get(username=username)
@@ -75,6 +98,7 @@ def all_users(request):
     }
     return render(request, 'users/all_users.html', context)
 
+@login_required
 def all_transfers(request):
     transfers = Transfer.objects.all()
     context = {
@@ -82,7 +106,14 @@ def all_transfers(request):
     }
     return render(request, 'users/all_transfers.html', context)
 
+
+@login_required
 def update_users(request, username):
+    if not request.user.is_staff:
+        messages.error(
+                request, f"You do not have permission to access this page."
+            )
+        return redirect("/")
     user = get_object_or_404(
             User, username=username
         )
