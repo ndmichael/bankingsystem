@@ -23,6 +23,29 @@
             <a class="navbar-brand d-block d-sm-none" href="/">
                 <b class="text-primary">BOI</b>
             </a>
+            <div class="d-sm-none d-block">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <b>Welcome {{ request.user.last_name }}</b>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'userprofile' request.user.username %}">
+                                <p>Profile</p>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'account_logout' %}">Logout </a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="btn btn-danger" href="{% url 'account_login' %}">
+                            SIGN IN NOW
+                        </a>
+                    </li>
+                    {% endif %}
+                    </ul>
+            </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon">
                     <i class="bi bi-list"></i>
@@ -67,17 +90,16 @@
                             </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{% url 'account_logout' %}">Logout </a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="btn btn-danger" href="{% url 'account_login' %}">
+                            SIGN IN NOW
+                        </a>
+                    </li>
+                    {% endif %}
+                    </ul>
             </div>
-            </li>
-            {% else %}
-            <li class="nav-item">
-                <a class="nav-link btn btn-danger" href="{% url 'account_login' %}">
-                    SIGN IN NOW
-                </a>
-            </li>
-            {% endif %}
-            </ul>
-        </div>
         </div>
     </nav>
 
