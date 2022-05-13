@@ -25,8 +25,12 @@ i.bi {
 * Quick tips
 */
 
+#earning {
+    padding-top: 4.5em;
+}
+
 #quickTip {
-    padding-top: 3.5em;
+    padding-top: 4.5em;
 }
 
 .nav-tabs .nav-link {
@@ -90,9 +94,29 @@ footer a {
 #charitypage {
     min-height: 70vh;
     min-width: 100%;
-    padding-top: 18vh;
-    background-image: linear-gradient(to left, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url("/static/ibanking/images/charity.jpg");
-    background-repeat: no-repeat;
-    background-position: cover;
+    padding-top: 25vh;
+    background-image: linear-gradient(to left, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url("/static/ibanking/images/charity2.jpg");
+    background-position: contain;
     color: #FFF;
+}
+
+
+/*
+*
+*  admin css
+*
+*/
+
+#staffadmin {
+    min-height: 100vh;
+    background: seagreen;
+}
+
+#staffadmin a {
+    display: block;
+    color: inherit;
+}
+
+#staffadmin a .bi {
+    font-size: 3rem;
 }
