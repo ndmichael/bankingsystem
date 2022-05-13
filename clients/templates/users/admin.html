@@ -72,13 +72,26 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {%for client in clients %}
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>
+                                <a href="{% url 'userprofile' user.username %}">
+                                    {{client.user.last_name}}
+                                    {{client.user.first_name}}
+                                </a>
+                            </td>
+                            <td>
+                                {{client.user.email}}
+                            </td>
+                            <td>{{ client.country.name}}</td>
+                            <td>{{client.account_number }}</td>
+                            <td>&#36;{{client.balance}}</td>
                         </tr>
+                        {% empty %}
+                        <tr>
+                            <h1>No Registered Clients</h1>
+                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>

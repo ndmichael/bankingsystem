@@ -32,7 +32,11 @@ def admin(request):
                 request, f"You do not have permission to access this page."
             )
         return redirect("/")
-    return render(request, 'users/admin.html')
+    clients = Client.objects.all().filter(user__is_active=True).order_by('-created')
+    context ={
+        'clients': clients
+    }
+    return render(request, 'users/admin.html', context)
 
 
 @login_required
