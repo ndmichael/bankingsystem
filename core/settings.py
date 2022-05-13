@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-1fqryc($ii8hjr0(thfoa$z$9qr8st#h8&7pp1i-w@t%g&z8o9
 DEBUG = os.environ.get("DEBUG_VALUE") == "True"
 print(DEBUG)
 SITE_ID = 1
-ALLOWED_HOSTS = ['https://boiworldwide.herokuapp.com']
+ALLOWED_HOSTS = ['https://boiworldwide.herokuapp.com', 'boiworldwide.herokuapp.com']
 
 
 # Application definition
