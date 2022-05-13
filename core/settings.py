@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import os
+import django_heroku
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,7 +30,7 @@ SECRET_KEY = 'django-insecure-1fqryc($ii8hjr0(thfoa$z$9qr8st#h8&7pp1i-w@t%g&z8o9
 DEBUG = os.environ.get("DEBUG_VALUE") == "True"
 print(DEBUG)
 SITE_ID = 1
-ALLOWED_HOSTS = ['https://boiworldwide.herokuapp.com', 'boiworldwide.herokuapp.com']
+ALLOWED_HOSTS = ['https://boiworldwide.herokuapp.com', 'boiworldwide.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -168,5 +169,7 @@ ACCOUNT_FORMS = {"signup": "clients.forms.MyCustomSignupForm",
 }
 
 USE_THOUSAND_SEPARATOR = True
+
+django_heroku.settings(locals())
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
