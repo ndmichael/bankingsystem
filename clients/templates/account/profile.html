@@ -1,10 +1,10 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}{% load static %} {% block content %}
 
 <section>
     <div class="container py-5">
         <div class="row">
             <article class="col-12 col-sm-4 col-md-4">
-                <img class="img-fluid shadow" style="height: 350px; width: 100%; object-fit: cover;" src="{{ user.profile.photo_url }}">
+                <img class="img-fluid shadow" style="height: 350px; width: 100%; object-fit: cover;" src="{% static 'ibanking/images/avatar.png' %}">
                 <div class=" text-center pt-4">
                     <p>Your user ID: <span class="text-danger "><b>{{user.username}}</b></span>
                     </p>
