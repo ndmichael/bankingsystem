@@ -91,7 +91,7 @@ def all_users(request):
     else:
         deactivate_form = DeactivateUser()
     
-    clients = Client.objects.all().filter(user__is_active=True)
+    clients = Client.objects.all().filter(user__is_active=True).order_by('-created')
     context = {
         'clients': clients,
         'd_form': deactivate_form
