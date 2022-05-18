@@ -21,7 +21,7 @@ def contact(request):
 
 
 @login_required
-def transfer(request):
+def transfer(request, username):
     user = Client.objects.get(user=request.user)
     if request.method == "POST":
         form = TransferForm(request.POST)

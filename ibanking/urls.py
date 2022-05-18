@@ -7,5 +7,5 @@ urlpatterns = [
     path('', index, name="index"),
     path("charity/", charity, name="charity"),
     path("contact/", contact, name="contact"),
-    path("transfer/", transfer, name="maketransfer"),
+    path("transfer/<str:username>", transfer, name="maketransfer"),
 ]
