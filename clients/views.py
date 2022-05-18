@@ -104,6 +104,11 @@ def all_users(request):
 
 @login_required
 def all_transfers(request):
+    if not request.user.is_staff:
+        messages.error(
+                request, f"You do not have permission to access this page."
+            )
+        return redirect("userprofile", request.user.username)
     transfers = Transfer.objects.all()
     context = {
         'transfers': transfers

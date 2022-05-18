@@ -22,7 +22,7 @@ def contact(request):
 
 @login_required
 def transfer(request, username):
-    user = Client.objects.get(user=request.user)
+    user =  get_object_or_404(Client, user = request.user)
     if request.method == "POST":
         form = TransferForm(request.POST)
         if form.is_valid():
