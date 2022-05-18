@@ -91,13 +91,61 @@
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <section class="container">
                             <div class="row py-5">
-                                <article class="col-12 col-md-5  offset-md-1 align-self-center">
-                                    <p>
-                                        Initiate transfer as by entering necessary information through your account. Money is transfered instantly within 24hours irrespective of country, city, or state. This is why we are known to be the best.
-                                    </p>
-                                </article>
-                                <article class="col-12 col-md-5">
-                                    <img src="{% static 'ibanking/images/transfers.jpg' %}" alt="" class="img-fluid shadow-lg">
+                                <article class="col-12 col-md-10  offset-md-1 align-self-center">
+                                    <table class="table table-responsive">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">UserName</th>
+                                                <th scope="col">Transfer Amount
+                                                </th>
+                                                <th scope="col">Receivers Name
+                                                </th>
+                                                <th scope="col">Country</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Actions</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for transfer in p_transfers %}
+                                            <tr>
+                                                <td>
+                                                    <a href="{% url 'userprofile' transfer.user.username %}">
+                                                        {{transfer.user.username}}
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    &#36;{{transfer.amount }}
+                                                </td>
+                                                <td>
+                                                    {{transfer.receivers_name}}
+                                                </td>
+                                                <td>
+                                                    {{transfer.country.name}}
+                                                </td>
+                                                <td>
+                                                    <span class="text-danger">pending</span>
+                                                </td>
+                                                <td>
+                                                    {% if not transfer.is_success %}
+                                                    <form method="post">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" value="{{transfer.id}}" name="id"> 
+                                                        {{form | crispy}}
+                                                            <button class="btn btn-sm btn-danger">
+                                                                Confirm
+                                                            </button>
+                                                    </form>
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+                                            {% empty %}
+                                            <tr>
+                                                <h1>No Pending Transfers</h1>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
                                 </article>
                             </div>
                         </section>

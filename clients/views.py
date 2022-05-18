@@ -131,8 +131,10 @@ def all_transfers(request):
     form = TransferSuccessForm()
 
     transfers = Transfer.objects.all().order_by('-dotf')
+    pending_transfers = Transfer.objects.filter(is_success=False).order_by('-dotf')
     context = {
         'transfers': transfers,
+        'p_transfers': pending_transfers,
         'form': form
     }
     return render(request, 'users/all_transfers.html', context)
