@@ -1,41 +1,111 @@
-{% extends 'base.html' %} {% block content %}
-<section>
+{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %}  {% block content %}
+<section style="min-height: 90vh; padding-top:12vh;">
     <div class="container">
         <section class="row">
-            <article class="col-8 mx-auto">
-                <table class="table table-responsive">
-                    <thead>
-                        <tr>
-                            <th scope="col">Full Name</th>
-                            <th scope="col">Acc Number</th>
-                            <th scope="col">Balance</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {%for client in clients %}
-                        <tr>
-                            <td>
-                                <a href="{% url 'userprofile' client.user.username %}">
-                                    {{client.user.last_name}}
-                                    {{client.user.first_name}}
-                                </a>
-                            </td>
-                            <td>{{client.account_number }}</td>
-                            <td>&#36;{{client.balance}}</td>
-                            <td>
-                                <a href="#" class="btn btn-warning">
-                                    LOAD ACCOUNT
-                                </a>
-                            </td>
-                        </tr>
-                        {% empty %}
-                        <tr>
-                            <h1>No Transfers</h1>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+            <article class="col-12 col-sm-0 mx-auto">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">
+                            All Transfers
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
+                            Pending Transfers
+                        </button>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <section class="container">
+                            <div class="row py-5">
+                                <article class="col-12">
+                                    <table class="table table-responsive">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">UserName</th>
+                                                <th scope="col">Transfer Amount
+                                                </th>
+                                                <th scope="col">Receivers Name
+                                                </th>
+                                                <th scope="col">Country</th>
+                                                <th scope="col">Status</th>
+                                                {% if not is_success %}
+                                                <th scope="col">Actions</th>
+                                                {% else %} 
+                                                ... 
+                                                {% endif %}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {%for transfer in transfers %}
+                                            <tr>
+                                                <td>
+                                                    <a href="{% url 'userprofile' transfer.user.username %}">
+                                                        {{transfer.user.username}}
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    &#36;{{transfer.amount }}
+                                                </td>
+                                                <td>
+                                                    {{transfer.receivers_name}}
+                                                </td>
+                                                <td>
+                                                    {{transfer.country.name}}
+                                                </td>
+                                                <td>
+                                                    {% if not transfer.is_success %}
+                                                    <span class="text-danger">pending {{transfer.id}}</span>
+                                                    {% else %}
+                                                    <span class="text-success">Success</span>
+                                                    {% endif %}
+                                                </td>
+                                                <td>
+                                                    {% if not transfer.is_success %}
+                                                    <form method="post">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" value="{{transfer.id}}" name="id"> 
+                                                        {{form | crispy}}
+                                                            <button class="btn btn-sm btn-danger">
+                                                                Confirm
+                                                            </button>
+                                                    </form>
+                                                    {% else %}
+                                                    ...
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+                                            {% empty %}
+                                            <tr>
+                                                <h1>No Transfers</h1>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </article>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <section class="container">
+                            <div class="row py-5">
+                                <article class="col-12 col-md-5  offset-md-1 align-self-center">
+                                    <p>
+                                        Initiate transfer as by entering necessary information through your account. Money is transfered instantly within 24hours irrespective of country, city, or state. This is why we are known to be the best.
+                                    </p>
+                                </article>
+                                <article class="col-12 col-md-5">
+                                    <img src="{% static 'ibanking/images/transfers.jpg' %}" alt="" class="img-fluid shadow-lg">
+                                </article>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+
+
             </article>
         </section>
     </div>

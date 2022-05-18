@@ -100,8 +100,6 @@ class ClientUpdateForm(forms.ModelForm):
 class DeactivateUser(forms.Form):
     deactivate = forms.BooleanField()
 
-
-
 class UserForm(UserCreationForm):
     email = forms.EmailField()
     username = forms.CharField()
@@ -130,3 +128,6 @@ class ClientRegisterForm(forms.ModelForm):
     class Meta:
         model = Client
         fields =  ['balance', 'address', 'country', 'dob', 'gender', 'image']
+
+class TransferSuccessForm(forms.Form):
+    is_success = forms.BooleanField()

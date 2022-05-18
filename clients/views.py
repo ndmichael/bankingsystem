@@ -2,7 +2,14 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from .models import Client
 from django.contrib import messages
-from .forms import ClientUpdateForm, UserUpdateForm, DeactivateUser, ClientRegisterForm, UserForm
+from .forms import (
+    ClientUpdateForm, 
+    UserUpdateForm, 
+    DeactivateUser, 
+    ClientRegisterForm, 
+    UserForm, 
+    TransferSuccessForm
+)
 from clients.models import Client, Transfer
 from random import randrange
 from django.contrib.auth.decorators import login_required
@@ -85,10 +92,11 @@ def all_users(request):
         # user = User.objects.get(username=username)
         user = get_object_or_404(User, username=username)
         if  request.POST.get('deactivate') == 'on':
-            print(user.is_active)
             user.is_active = False
             user.save()
-            print(user.is_active)
+            messages.success(
+                request, f"{username} has been deactivated."
+            )
         return redirect(
                 "all_users"
             )  
@@ -109,9 +117,23 @@ def all_transfers(request):
                 request, f"You do not have permission to access this page."
             )
         return redirect("userprofile", request.user.username)
-    transfers = Transfer.objects.all()
+
+    if request.method == 'POST':
+        transfer_id = request.POST.get('id')
+        transfer = get_object_or_404(Transfer, id=transfer_id)
+        if request.POST.get('is_success'):
+            transfer.is_success = True
+        transfer.save()
+        messages.success(
+                request, f"Transfer with id: {transfer_id} has been confirmed."
+            )
+    
+    form = TransferSuccessForm()
+
+    transfers = Transfer.objects.all().order_by('-dotf')
     context = {
-        'transfers': transfers
+        'transfers': transfers,
+        'form': form
     }
     return render(request, 'users/all_transfers.html', context)
 
