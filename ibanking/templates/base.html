@@ -39,7 +39,7 @@
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="btn btn-danger" href="{% url 'account_login' %}">
+                        <a class="btn btn-sm btn-danger" href="{% url 'account_login' %}">
                             SIGN IN NOW
                         </a>
                     </li>
@@ -108,7 +108,7 @@
             <div class="offset-sm-3 col-sm-6">
                 {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}">
-                    <p><b>{{ message }}</b></p>
+                    <b>{{ message }}</b>
                 </div>
                 {% endfor %}
             </div>
