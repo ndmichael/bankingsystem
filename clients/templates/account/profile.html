@@ -65,23 +65,22 @@
 
             </article>
             <article class="col-12 col-md-3 text-center">
-                <div class="dropdown">
+                <div class="">
                     <a href="{% url 'maketransfer' user.username %}" class=" btn btn-info btn-lg">
                         Make Transfer
                     </a>
                 </div>
-                <div class="dropdown pt-4">
-                    <a class="btn btn-danger dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-gear text-light"></i>
+                <div class="pt-4">
+                    <a href="{% url 'account_change_password' %}" class=" btn btn-dark">
+                        Change Password
                     </a>
-
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">change
-                                password</a></li>
-                        <li><a class="dropdown-item" href="#">Change pin</a>
-                        </li>
-                    </ul>
                 </div>
+                <div class="pt-4">
+                    <a href="{% url 'account_change_password' %}" class=" btn btn-danger btn-sm">
+                        Change Pin
+                    </a>
+                </div>
+
             </article>
         </div>
     </div>
