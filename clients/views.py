@@ -13,6 +13,7 @@ from .forms import (
 from clients.models import Client, Transfer
 from random import randrange
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 
 
 # Create your views here.
@@ -24,10 +25,13 @@ def profile(request, username):
         User, username=username
     )  # getting the current user passed to it
     profile = Client.objects.filter(user=user)
-
+    transfers = Transfer.objects.filter(user=user)
+    total_transfers =  Transfer.objects.filter(user=user).count()
+    print(total_transfers)
     context = {
         "user": user,
         "profile": profile,
+        'total_transfers': total_transfers
     }
     return render(request, 'account/profile.html', context)
 
@@ -67,6 +71,18 @@ def register(request):
             client.account_number = acc_number
             client.save()
             username = u_form.cleaned_data.get("username")
+
+            # EMAILING 
+            subject = f"Account Creation"
+            message = f"'success', Account has been created for {username}."
+            sender = "mickeyjayblest@gmail.com"
+            send_mail(
+                subject,
+                message,
+                'mickeyjayblest@gmail.com',
+                ['ukejemicheal@gmail.com']
+            )
+
             messages.success(
                 request, f"Account has been created for {username} you  can now login."
             )
@@ -123,8 +139,18 @@ def all_transfers(request):
         transfer = get_object_or_404(Transfer, id=transfer_id)
         if request.POST.get('is_success'):
             transfer.is_success = True
-        transfer.save()
-        messages.success(
+            transfer.save()
+            # EMAILING 
+            subject = f"Transfer Confirmation."
+            message = f"'success', Account has been created for {transfer.user.username}."
+            sender = "mickeyjayblest@gmail.com"
+            send_mail(
+                subject,
+                message,
+                'mickeyjayblest@gmail.com',
+                [transfer.user.email]
+            )
+            messages.success(
                 request, f"Transfer with id: {transfer_id} has been confirmed."
             )
     
@@ -158,6 +184,16 @@ def update_users(request, username):
         if u_form.is_valid() and c_form.is_valid():
             u_form.save()
             c_form.save()
+            # EMAILING 
+            subject = f"Transfer Confirmation."
+            message = f"'success', Account has been created for {request.user.username}."
+            sender = "mickeyjayblest@gmail.com"
+            send_mail(
+                subject,
+                message,
+                'mickeyjayblest@gmail.com',
+                [request.user.email]
+            )
             messages.success(request, f"account successfully updated")
             return redirect(
                 "all_users"

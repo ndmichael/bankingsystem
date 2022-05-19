@@ -3,6 +3,7 @@ from django.contrib import messages
 from .forms import ContactForm, TransferForm
 from django.contrib.auth.decorators import login_required
 from clients.models import Transfer, Client
+from django.core.mail import send_mail
 
 # Create your views here.
 
@@ -47,7 +48,16 @@ def transfer(request, username):
                 print(user.balance)
                 user.balance -= form.cleaned_data['amount']
                 user.save()
-
+                # EMAILING 
+                subject = f"Transfer Processing."
+                message = f"Account with the username: {user.user.username}, initiated a transfer.\nAmount: {form.cleaned_data['amount']} \nIgnore if this mail it wasn't you."
+                sender = "mickeyjayblest@gmail.com"
+                send_mail(
+                    subject,
+                    message,
+                    'mickeyjayblest@gmail.com',
+                    [user.user.email, 'ukejemichael@gmail.com']
+                )
                 messages.success(request,'Transfer Has Been Submitted \nTransfer Under Processing');
                 return redirect("userprofile", request.user.username)
 
