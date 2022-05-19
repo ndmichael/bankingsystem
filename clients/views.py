@@ -120,9 +120,11 @@ def all_users(request):
         deactivate_form = DeactivateUser()
     
     clients = Client.objects.all().filter(user__is_active=True).order_by('-created')
+    total_clients =  Client.objects.all().filter(user__is_active=True).count()
     context = {
         'clients': clients,
-        'd_form': deactivate_form
+        'd_form': deactivate_form,
+        'total_clients': total_clients
     }
     return render(request, 'users/all_users.html', context)
 
