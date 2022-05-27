@@ -186,4 +186,4 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
-SECURE_XXL_REDIRECT = True
+SECURE_SSL_REDIRECT = True
