@@ -16,4 +16,8 @@ class TransferForm(forms.Form):
     receivers_name = forms.CharField(max_length=30)
     beneficiary_account_number = forms.CharField(max_length=15)
     country = CountryField(blank=True).formfield()
+
+
+class LoadBalanceForm(forms.Form):
+    amount = forms.DecimalField()
     
