@@ -1,6 +1,7 @@
 from django.shortcuts import render,  redirect, get_object_or_404
+from django.contrib.auth.models import User
 from django.contrib import messages
-from .forms import ContactForm, TransferForm
+from .forms import ContactForm, TransferForm, LoadBalanceForm
 from django.contrib.auth.decorators import login_required
 from clients.models import Transfer, Client
 from django.core.mail import send_mail
@@ -67,3 +68,33 @@ def transfer(request, username):
         'form': form
     }
     return render(request, 'ibanking/make_transfer.html', context)
+
+def loadbalance(request):
+    if not request.user.is_staff:
+        messages.error(
+                request, f"You do not have permission to access this page."
+            )
+        return redirect("userprofile", request.user.username)
+    
+    if request.POST:
+        id = request.POST.get('id')
+        client = get_object_or_404(Client, user = id)
+        print(client)
+        if  request.POST:
+            amount = int(request.POST.get('amount'))
+            client.balance += amount
+            client.save()
+            messages.success(
+                request, f"{client.user.username} current balance is {client.balance}."
+            )
+        return redirect(
+                "loadbalance"
+            )  
+    else:
+        loadbalanceform = LoadBalanceForm()
+    clients = Client.objects.all().filter(user__is_active=True).order_by('-created')
+    context = {
+        'loadbalanceform' : loadbalanceform,
+        'clients': clients
+    }
+    return render(request, 'ibanking/load_balance.html', context)
