@@ -32,7 +32,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY_BOIW")
 DEBUG = os.environ.get("DEBUG_VALUE") == "True"
 
 SITE_ID = 1
-ALLOWED_HOSTS = ['https://boiworldwide.herokuapp.com', 'boiworldwide.herokuapp.com', '127.0.0.1','boiworldwide.com', 'boiworldwide.com']
+ALLOWED_HOSTS = ['https://boiworldwide.herokuapp.com', 'boiworldwide.herokuapp.com', '127.0.0.1','www.boiworldwide.com', 'boiworldwide.com']
 
 
 # Application definition
