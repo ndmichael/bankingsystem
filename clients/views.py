@@ -44,8 +44,12 @@ def admin(request):
             )
         return redirect("/")
     clients = Client.objects.all().filter(user__is_active=True).order_by('-created')
+    total_clients =  Client.objects.all().filter(user__is_active=True).count()
+    pending_transfers =  Transfer.objects.all().filter(is_success=False).filter(user__is_active=True).count()
     context ={
-        'clients': clients
+        'clients': clients,
+        'total_clients': total_clients,
+        'pending_transfers': pending_transfers,
     }
     return render(request, 'users/admin.html', context)
 
