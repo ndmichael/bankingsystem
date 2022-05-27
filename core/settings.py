@@ -182,3 +182,8 @@ MESSAGE_TAGS = {
 
 # Setting up emails
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+
+if os.getcwd() == '/app':
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_XXL_REDIRECT = True
