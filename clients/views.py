@@ -78,7 +78,9 @@ def register(request):
 
             # EMAILING 
             subject = f"Account Creation"
-            message = f"'success', Account has been created for {username}."
+            message = f"""'success', Account has been created for {username}.
+                password: {{}}
+            """
             sender = "mickeyjayblest@gmail.com"
             send_mail(
                 subject,
