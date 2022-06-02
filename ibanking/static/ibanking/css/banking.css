@@ -3,7 +3,7 @@ css for the index boxes
 */
 
 .navbar-light {
-    padding: 5px !important;
+    padding: 0 !important;
 }
 
 .navbar-light .navbar-nav .nav-link {
