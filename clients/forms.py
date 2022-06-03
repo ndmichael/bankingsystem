@@ -28,9 +28,9 @@ class SelfLoginForm (LoginForm):
         super().__init__(*args, **kwargs)
         self.fields["login"] = forms.CharField(label='user ID')
         self.fields["login"].widget.attrs.update(
-            {'class': 'form-control-lg rounded-pill border-0 shadow-sm'})
+            {'class': 'form-control-lg rounded-pill border-0 shadow-sm mb-3'})
         self.fields["password"].widget.attrs.update(
-            {'class': 'form-control-lg rounded-pill border-0 shadow-sm  '})
+            {'class': 'form-control-lg rounded-pill border-0 shadow-sm mb-3 '})
 
 
 class MyCustomSignupForm(SignupForm):
