@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %}  {% block content %}
+{% extends 'ibanking/base.html' %} {% load static %} {% load crispy_forms_tags %} {% block content %}
 <section style="min-height: 90vh; padding-top:12vh;">
     <div class="container">
         <section class="row">
@@ -33,9 +33,7 @@
                                                 <th scope="col">Status</th>
                                                 {% if not is_success %}
                                                 <th scope="col">Actions</th>
-                                                {% else %} 
-                                                ... 
-                                                {% endif %}
+                                                {% else %} ... {% endif %}
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -57,24 +55,20 @@
                                                 </td>
                                                 <td>
                                                     {% if not transfer.is_success %}
-                                                    <span class="text-danger">pending {{transfer.id}}</span>
-                                                    {% else %}
-                                                    <span class="text-success">Success</span>
-                                                    {% endif %}
+                                                    <span class="text-danger">pending
+                                                        {{transfer.id}}</span> {% else %}
+                                                    <span class="text-success">Success</span> {% endif %}
                                                 </td>
                                                 <td>
                                                     {% if not transfer.is_success %}
                                                     <form method="post">
                                                         {% csrf_token %}
-                                                        <input type="hidden" value="{{transfer.id}}" name="id"> 
-                                                        {{form | crispy}}
-                                                            <button class="btn btn-sm btn-danger">
-                                                                Confirm
-                                                            </button>
+                                                        <input type="hidden" value="{{transfer.id}}" name="id"> {{form | crispy}}
+                                                        <button class="btn btn-sm btn-danger">
+                                                            Confirm
+                                                        </button>
                                                     </form>
-                                                    {% else %}
-                                                    ...
-                                                    {% endif %}
+                                                    {% else %} ... {% endif %}
                                                 </td>
                                             </tr>
                                             {% empty %}
@@ -130,11 +124,10 @@
                                                     {% if not transfer.is_success %}
                                                     <form method="post">
                                                         {% csrf_token %}
-                                                        <input type="hidden" value="{{transfer.id}}" name="id"> 
-                                                        {{form | crispy}}
-                                                            <button class="btn btn-sm btn-danger">
-                                                                Confirm
-                                                            </button>
+                                                        <input type="hidden" value="{{transfer.id}}" name="id"> {{form | crispy}}
+                                                        <button class="btn btn-sm btn-danger">
+                                                            Confirm
+                                                        </button>
                                                     </form>
                                                     {% endif %}
                                                 </td>
