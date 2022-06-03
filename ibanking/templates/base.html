@@ -1,4 +1,4 @@
-<!DOCTYPE html> {% load static %}
+<!DOCTYPE html> {% load static %} {% load google_translate %}
 <html lang="en">
 
 <head>
@@ -63,12 +63,24 @@
                             <b>Admin</b>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">
+                            {% google_translate %}
+                        </a>
+                    </li>
                 </ul>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="">
+                        {% google_translate %}
+                    </a>
+                </li>
                 {% endif %}
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" href="">
                             Investing
+                            {% google_translate %}
                         </a>
                     </li>
 
