@@ -12,7 +12,7 @@ django-allauth==0.50.0
 django-countries==7.3.2
 django-crispy-forms==1.14.0
 # django-google-translate==1.1
-git+https://github.com/ndmichael/google-translator.git
+git+https://github.com/ndmichael/google-translator/tree/main/google_translate
 django-heroku==0.3.1
 gunicorn==20.1.0
 idna==3.3
