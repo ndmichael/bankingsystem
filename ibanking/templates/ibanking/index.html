@@ -1,4 +1,4 @@
-{% extends 'base.html' %}{% load static %} {% block content %}
+{% extends 'ibanking/base.html' %}{% load static %} {% block content %}
 
 <section class="" id="index-main">
     <div class="container">
@@ -14,9 +14,21 @@
                     <br /> We provide easier path to wealth.
                 </p>
                 <p class=" animate__animated animate__fadeInUp animate__delay-2s">
+                    {% if user.is_authenticated and request.user.is_staff %}
+                    <a href="{% url 'adminpage' %}" class="btn btn-lg btn-danger col-8">
+                        ADMIN DASHBOARD!!!
+                    </a> 
+                    {% elif user.is_authenticated %}
+                    <a href="{% url 'contact' %}" class="btn btn-lg btn-danger col-8">
+                        CONTACT US!!!
+                    </a>
+                    <br />
+                    <small class=" text-muted">feel free to contact us</small> 
+                    {% else %}
                     <a href="{% url 'account_login' %}" class="btn btn-lg btn-danger col-8">
                         SIGN IN NOW !!!
-                    </a>
+                    </a> 
+                    {% endif %}
                 </p>
             </article>
 
