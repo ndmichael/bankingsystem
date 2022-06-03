@@ -31,7 +31,8 @@ def profile(request, username):
     context = {
         "user": user,
         "profile": profile,
-        'total_transfers': total_transfers
+        'total_transfers': total_transfers,
+        'title': 'profile'
     }
     return render(request, 'account/profile.html', context)
 
@@ -50,6 +51,7 @@ def admin(request):
         'clients': clients,
         'total_clients': total_clients,
         'pending_transfers': pending_transfers,
+        'title': 'admin',
     }
     return render(request, 'users/admin.html', context)
 
@@ -98,7 +100,8 @@ def register(request):
         c_form = ClientRegisterForm()
     context = {
         'c_form': c_form,
-        'u_form': u_form
+        'u_form': u_form,
+        'title': "Registeration"
     }
     return render(request, 'users/register.html', context)
 
@@ -130,7 +133,8 @@ def all_users(request):
     context = {
         'clients': clients,
         'd_form': deactivate_form,
-        'total_clients': total_clients
+        'total_clients': total_clients,
+        'title': 'users'
     }
     return render(request, 'users/all_users.html', context)
 
@@ -169,7 +173,8 @@ def all_transfers(request):
     context = {
         'transfers': transfers,
         'p_transfers': pending_transfers,
-        'form': form
+        'form': form,
+        'title': 'transfers'
     }
     return render(request, 'users/all_transfers.html', context)
 
@@ -210,5 +215,5 @@ def update_users(request, username):
         u_form = UserUpdateForm(instance=user)
         c_form = ClientUpdateForm(instance=user.profile)
 
-    context = {"u_form": u_form, "c_form": c_form}
+    context = {"u_form": u_form, "c_form": c_form, 'title': 'update user'}
     return render(request, "users/update_user.html", context)
