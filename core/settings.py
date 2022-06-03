@@ -54,9 +54,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     # 'allauth.socialaccount.providers.google',
     # 'allauth.socialaccount.providers.facebook',
-    "django.contrib.sites",
-    "google_translate",
-    
+    "django.contrib.sites",   
 ]
 
 MIDDLEWARE = [
