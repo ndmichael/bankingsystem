@@ -9,6 +9,7 @@ Django==4.0.4
 django-allauth==0.50.0
 django-countries==7.3.2
 django-crispy-forms==1.14.0
+django-google-translate==1.1
 django-heroku==0.3.1
 gunicorn==20.1.0
 idna==3.3
@@ -18,6 +19,7 @@ Pillow==9.1.0
 psycopg2==2.9.3
 pycparser==2.21
 PyJWT==2.3.0
+python-gettext==4.0
 python3-openid==3.2.0
 pyuca==1.2
 requests==2.27.1
