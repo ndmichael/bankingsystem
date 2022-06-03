@@ -56,19 +56,18 @@
 
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
                 {% if user.is_authenticated and request.user.is_staff == True %}
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'adminpage' %}">
-                            <b>Admin</b>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">
-                            {% google_translate %}
-                        </a>
-                    </li>
-                </ul>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'adminpage' %}">
+                        <b>Admin</b>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        {% google_translate %}
+                    </a>
+                </li>
                 {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="">
@@ -76,6 +75,7 @@
                     </a>
                 </li>
                 {% endif %}
+                </ul>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" href="">
