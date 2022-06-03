@@ -9,15 +9,16 @@ from django.core.mail import send_mail
 # Create your views here.
 
 def index(request):
-    return render(request, 'ibanking/index.html')
+    return render(request, 'ibanking/index.html', {'title': 'home'})
 
 def charity(request):
-    return render(request, 'ibanking/charity.html')
+    return render(request, 'ibanking/charity.html', {'title': 'charity'})
 
 def contact(request):
     form = ContactForm()
     context = {
-        'form': form
+        'form': form,
+        'title': 'contact us'
     }
     return render(request, 'ibanking/contact.html', context)
 
@@ -65,7 +66,8 @@ def transfer(request, username):
     else:
         form = TransferForm()
     context = {
-        'form': form
+        'form': form,
+        'title': 'transfer-page'
     }
     return render(request, 'ibanking/make_transfer.html', context)
 
@@ -95,6 +97,7 @@ def loadbalance(request):
     clients = Client.objects.all().filter(user__is_active=True).order_by('-created')
     context = {
         'loadbalanceform' : loadbalanceform,
-        'clients': clients
+        'clients': clients,
+        'title': 'load balance'
     }
     return render(request, 'ibanking/load_balance.html', context)
