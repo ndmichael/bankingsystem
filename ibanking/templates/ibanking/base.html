@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>
+        {% if title %} {{title}} {% else %} BOIWorldwide {% endif %}
+    </title>
     <link rel="stylesheet" type="text/css" href="{% static 'ibanking/css/b5css/bootstrap.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'ibanking/css/mdb/mdb.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'ibanking/css/banking.css' %}" />
