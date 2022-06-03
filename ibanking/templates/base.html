@@ -1,4 +1,4 @@
-<!DOCTYPE html> {% load static %}
+<!DOCTYPE html> {% load static %}{% load google_translate %}
 <html lang="en">
 
 <head>
@@ -65,14 +65,14 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="">
-
+                            {% google_translate %}
                         </a>
                     </li>
                 </ul>
                 {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="">
-
+                        {% google_translate %}
                     </a>
                 </li>
                 {% endif %}
