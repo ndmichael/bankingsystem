@@ -131,3 +131,9 @@ class ClientRegisterForm(forms.ModelForm):
 
 class TransferSuccessForm(forms.Form):
     is_success = forms.BooleanField()
+
+
+class ChangePinForm(forms.Form):
+    current_pin = forms.CharField(max_length=30)
+    new_pin = forms.CharField(max_length=30)
+    new_pin_again = forms.CharField(max_length=30)
