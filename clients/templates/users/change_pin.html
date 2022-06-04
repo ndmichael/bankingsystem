@@ -1,0 +1,21 @@
+{% extends "account/base.html" %} {% load crispy_forms_tags %} {% block content %}
+
+<section class="my-5" style=" min-height:60vh">
+    <div class="container">
+        <section class="row">
+            <article class="col-12 col-sm-8 col-md-4 mx-auto">
+                <form action="" method="POST">
+                    {% csrf_token %} {{form | crispy}}
+
+                    <div class="pt-3">
+                        <button class="btn btn-primary" type="submit">
+                            Change Pin
+                        </button>
+                    </div>
+                </form>
+            </article>
+        </section>
+    </div>
+</section>
+
+{% endblock content %}
