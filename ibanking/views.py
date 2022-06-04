@@ -14,6 +14,9 @@ def index(request):
 def charity(request):
     return render(request, 'ibanking/charity.html', {'title': 'charity'})
 
+def invest(request):
+    return render(request, 'ibanking/investing.html', {'title': 'investment'})
+
 def contact(request):
     form = ContactForm()
     context = {
