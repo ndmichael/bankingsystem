@@ -65,7 +65,9 @@
 
             </article>
             <article class="col-12 col-md-3 text-center">
+                {% if request.user == user %}
                 <div class="">
+
                     <a href="{% url 'maketransfer' user.username %}" class=" btn btn-info btn-lg">
                         Make Transfer
                     </a>
@@ -80,7 +82,7 @@
                         Change Pin
                     </a>
                 </div>
-
+                {% endif %}
             </article>
         </div>
     </div>
