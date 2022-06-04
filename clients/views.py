@@ -8,7 +8,8 @@ from .forms import (
     DeactivateUser, 
     ClientRegisterForm, 
     UserForm, 
-    TransferSuccessForm
+    TransferSuccessForm,
+    ChangePinForm
 )
 from clients.models import Client, Transfer
 from random import randrange
@@ -217,3 +218,40 @@ def update_users(request, username):
 
     context = {"u_form": u_form, "c_form": c_form, 'title': 'update user'}
     return render(request, "users/update_user.html", context)
+
+
+
+def change_pin(request):
+    client = Client.objects.get(user = request.user)
+    print(client.transfer_pin)
+    if request.method == 'POST':
+        form = ChangePinForm(request.POST)
+        if form.is_valid():
+            # check if pin and pin_again the same
+            pin = form.cleaned_data['new_pin']
+            pin_again = form.cleaned_data['new_pin_again'] 
+            if not pin == pin_again:
+                messages.error(request, f"new pin and pin again must match.")
+            # check if current_pin input is same stored transfer_pin        
+            if form.cleaned_data['current_pin'] ==  client.transfer_pin:
+                client.transfer_pin = pin
+                client.save() 
+                messages.success(request, f"Transfer Pin have successfully changed.")
+                send_mail(
+                    "Pin change",
+                    "Pin Has successfully changed.",
+                    'mickeyjayblest@gmail.com',
+                    ['ukejemichael@gmail.com']
+                )
+                return redirect(
+                    "userprofile", request.user.username
+                )
+            else:
+                messages.error(request, f"have you forgoten your pin please contact customer care.")
+
+        
+    context = {
+        'form': ChangePinForm,
+        'title': 'change pin'
+    }
+    return render(request, 'users/change_pin.html', context)
