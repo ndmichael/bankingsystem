@@ -4,7 +4,7 @@
     <div class="container py-5">
         <div class="row">
             <article class="col-12 col-sm-4 col-md-4">
-                <img class="img-fluid shadow" style="height: 300px; width: 70%; object-fit: cover; object-position: top;" src="{% static 'ibanking/images/avatar.png' %}">
+                <img class="img-fluid shadow" style="height: 300px; width: 70%; object-fit: cover; object-position: top;" src="{{ user.profile.photo_url }}">
                 <div class="pt-4">
                     <p>Your user ID: <span class="text-danger "><b>{{user.username}}</b></span>
                     </p>
