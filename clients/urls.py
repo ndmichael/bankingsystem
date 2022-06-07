@@ -1,5 +1,8 @@
 from django.urls import path
-from .views import profile, admin, all_users, all_transfers, update_users, register, change_pin
+from .views import (
+    profile, admin, all_users, all_transfers, 
+    update_users, register, change_pin, change_password
+)
 
 
 
@@ -11,4 +14,5 @@ urlpatterns = [
     path("users/register/", register, name="register"),
     path("users/update/<str:username>", update_users, name="update_user"),
     path("users/changepin/", change_pin, name="change_pin"),
+    path("profile/changepassword/<int:id>/", change_password, name="change_password"),
 ]

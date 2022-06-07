@@ -9,12 +9,15 @@ from .forms import (
     ClientRegisterForm, 
     UserForm, 
     TransferSuccessForm,
-    ChangePinForm
+    ChangePinForm,
+    ChangePasswordForm
 )
 from clients.models import Client, Transfer
 from random import randrange
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.hashers import make_password
 
 
 # Create your views here.
@@ -199,8 +202,8 @@ def update_users(request, username):
             u_form.save()
             c_form.save()
             # EMAILING 
-            subject = f"Transfer Confirmation."
-            message = f"'success', Account has been created for {request.user.username}."
+            subject = f"User Profile Update."
+            message = f"'success', Account has been updted for {request.user.username}."
             sender = "mickeyjayblest@gmail.com"
             send_mail(
                 subject,
@@ -247,11 +250,39 @@ def change_pin(request):
                     "userprofile", request.user.username
                 )
             else:
-                messages.error(request, f"have you forgoten your pin please contact customer care.")
-
-        
+                messages.error(request, f"have you forgoten your pin please contact customer care.")      
     context = {
         'form': ChangePinForm,
         'title': 'change pin'
     }
     return render(request, 'users/change_pin.html', context)
+
+
+def change_password(request, id):
+    user = User.objects.get(id=id)
+    print(user.username)
+    print(request.user)
+    if request.method == "POST":
+        form = ChangePasswordForm(request.POST, user)
+        if form.is_valid():
+            password = form.cleaned_data['password']
+            password2 = form.cleaned_data['password_again']
+            if not password == password2:
+                messages.error(request, f"password and password again must match.")
+            else:
+                password = make_password(password, hasher="default")
+                user.password = password
+                user_data = user.save()
+                update_session_auth_hash(request, user_data)
+                messages.success(request, "Password Has been successfully updated.")
+                return redirect("userprofile", user.username)
+        else:
+            messages.error(request, "Fix the error.")
+    else:
+        form = ChangePasswordForm()
+
+    context = {
+        "title": "change password",
+        'form': form
+    }
+    return render(request, 'users/change_password.html', context)

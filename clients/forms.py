@@ -88,7 +88,7 @@ class MyCustomSignupForm(SignupForm):
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['last_name', 'first_name', 'username']
+        fields = ['last_name', 'first_name', 'username', 'password']
 
 
 class ClientUpdateForm(forms.ModelForm):
@@ -137,3 +137,8 @@ class ChangePinForm(forms.Form):
     current_pin = forms.CharField(max_length=30)
     new_pin = forms.CharField(max_length=30)
     new_pin_again = forms.CharField(max_length=30)
+
+
+class ChangePasswordForm(forms.Form):
+    password = forms.CharField(max_length=30)
+    password_again = forms.CharField(max_length=30)
