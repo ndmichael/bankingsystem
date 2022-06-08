@@ -196,7 +196,7 @@ def update_users(request, username):
     if request.method == "POST":
         u_form = UserUpdateForm(request.POST, instance=user)
         c_form = ClientUpdateForm(
-            request.POST, request.FILES, instance=user
+            request.POST, request.FILES, instance=user.profile
         )
         if u_form.is_valid() and c_form.is_valid():
             u_form.save()
