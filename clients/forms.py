@@ -88,13 +88,14 @@ class MyCustomSignupForm(SignupForm):
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['last_name', 'first_name', 'username', 'password']
+        fields = ['last_name', 'first_name', 'username']
 
 
 class ClientUpdateForm(forms.ModelForm):
+    country = CountryField(blank=True).formfield()
     class Meta:
         model = Client
-        fields = ['image', 'gender', 'dob']
+        fields = ['image','country', 'gender', 'dob']
 
 
 class DeactivateUser(forms.Form):
