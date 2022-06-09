@@ -1,7 +1,8 @@
 from django.shortcuts import render,  redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .forms import ContactForm, TransferForm, LoadBalanceForm
+from .models import BankingHistory
+from .forms import ContactForm, TransferForm, LoadBalanceForm, AddHistoryForm
 from django.contrib.auth.decorators import login_required
 from clients.models import Transfer, Client
 from django.core.mail import send_mail
@@ -16,6 +17,27 @@ def charity(request):
 
 def invest(request):
     return render(request, 'ibanking/investing.html', {'title': 'investment'})
+
+def banking_history(request, username):
+    user = User.objects.get(username=username)
+    if request.method == "POST":
+        form = AddHistoryForm(request.POST)
+        if form.is_valid():
+            set_form = form.save(commit=False)
+            set_form.user = user
+            set_form.save()
+            messages.success(request, f"banking history added.")
+            return redirect(
+                "banking_history", user.username
+            ) 
+    form = AddHistoryForm()
+    context = {
+        'user': user,
+        'title': 'add history',
+        'form': form,
+    }
+    print(user)
+    return render(request, 'ibanking/manage_history.html', context)
 
 def contact(request):
     form = ContactForm()
