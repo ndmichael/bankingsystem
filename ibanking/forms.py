@@ -1,6 +1,12 @@
 from django import forms
 from clients.models import Transfer
+from .models import BankingHistory
 from django_countries.fields import CountryField
+
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
 
 class ContactForm(forms.Form):
     name = forms.CharField()
@@ -20,4 +26,12 @@ class TransferForm(forms.Form):
 
 class LoadBalanceForm(forms.Form):
     amount = forms.DecimalField()
+    
+
+class AddHistoryForm(forms.ModelForm):
+    transaction_date = forms.DateField(widget=DateInput)
+    description = forms.CharField(widget=forms.Textarea(attrs={'name':'body', 'rows':'3'}))
+    class Meta:
+        model = BankingHistory
+        fields = ['record','amount','balance', 'transaction_date', 'description']
     
