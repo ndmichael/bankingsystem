@@ -70,6 +70,7 @@
                             <th scope="col">Country</th>
                             <th scope="col">Acc Number</th>
                             <th scope="col">Balance</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -87,6 +88,11 @@
                             <td>{{ client.country.name}}</td>
                             <td>{{client.account_number }}</td>
                             <td>&#36;{{client.balance}}</td>
+                            <td>
+                                <a href="{% url 'banking_history' client.user.username %}" class="btn btn-sm btn-success">
+                                    Add History
+                                </a>
+                            </td>
                         </tr>
                         {% empty %}
                         <tr>
