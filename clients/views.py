@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from .models import Client
+from ibanking.models import BankingHistory
 from django.contrib import messages
 from .forms import (
     ClientUpdateForm, 
@@ -30,12 +31,14 @@ def profile(request, username):
     )  # getting the current user passed to it
     profile = Client.objects.filter(user=user)
     transfers = Transfer.objects.filter(user=user)
+    histories = BankingHistory.objects.filter(user=user).order_by('-transaction_date')[:10]
     total_transfers =  Transfer.objects.filter(user=user).count()
     print(total_transfers)
     context = {
         "user": user,
         "profile": profile,
         'total_transfers': total_transfers,
+        'histories': histories,
         'title': 'profile'
     }
     return render(request, 'account/profile.html', context)
