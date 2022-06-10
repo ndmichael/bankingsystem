@@ -51,7 +51,7 @@ def contact(request):
                 subject,
                 message,
                 email,
-                ['contact@boiworldwide.com', 'mickeyjayblest@gmail.com']
+                ['postmaster@mg.boiworldwide.com']
             )
             messages.success(request,'Mail successfully sent.');
             redirect('contact')
