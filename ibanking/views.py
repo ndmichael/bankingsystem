@@ -40,6 +40,22 @@ def banking_history(request, username):
     return render(request, 'ibanking/manage_history.html', context)
 
 def contact(request):
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+
+            send_mail(
+                subject,
+                message,
+                email,
+                ['contact@boiworldwide.com', 'mickeyjayblest@gmail.com']
+            )
+            messages.success(request,'Mail successfully sent.');
+            redirect('contact')
+
     form = ContactForm()
     context = {
         'form': form,
