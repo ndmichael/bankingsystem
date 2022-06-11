@@ -9,14 +9,14 @@
                 <p>Manage All <b>Accounts</b> Here.</p>
             </article>
             <article class="col-4 col-md-6 text-end">
-                <a href="{% url 'register' %}" class=" btn btn-danger" style=" color: white; display: inline-block;">
+                <a href="{% url 'register' %}" class=" btn btn-lg btn-danger" style=" color: white; display: inline-block;">
                     Add New Clients
                 </a>
             </article>
         </section>
         <section class="row">
             <article class="col-12 col-md-4 mb-3">
-                <a href="{% url 'all_users' %}" class="border py-4 px-3 rounded-4 bg-white ">
+                <a href="{% url 'all_users' %}" class="shadow-sm py-4 px-3 rounded-4 bg-white ">
                     <div class=" d-flex  justify-content-around">
                         <i class="bi bi-person-circle text-danger "></i>
                         <div class="ps-3">
@@ -31,7 +31,7 @@
                 </a>
             </article>
             <article class="col-12 col-md-4 mb-3">
-                <a href="{% url 'all_transfer' %}" class="border py-4 px-3 rounded-4 bg-white ">
+                <a href="{% url 'all_transfer' %}" class="shadow-sm py-4 px-3 rounded-4 bg-white ">
                     <div class=" d-flex  justify-content-around">
                         <i class="bi bi-credit-card text-primary  "></i>
                         <div class="ps-3">
@@ -45,7 +45,7 @@
                 </a>
             </article>
             <article class="col-12 col-md-4 mb-3">
-                <a href="{% url 'loadbalance' %}" class="border py-4 px-3 rounded-4 bg-white ">
+                <a href="{% url 'loadbalance' %}" class="shadow-sm py-4 px-3 rounded-4 bg-white ">
                     <div class=" d-flex  justify-content-around">
                         <i class="bi bi-currency-exchange text-secondary "></i>
                         <div class="ps-3">
@@ -60,7 +60,7 @@
             </article>
         </section>
         <section class="row mt-5">
-            <div class="col-12">
+            <div class="col-12 col-md-10 offset-md-1">
                 <h4 class="pt-4">List Of Recently Created Clients</h4>
                 <table class="table table-responsive">
                     <thead>
@@ -77,10 +77,13 @@
                         {%for client in clients %}
                         <tr>
                             <td>
-                                <a href="{% url 'userprofile' user.username %}">
-                                    {{client.user.last_name}}
-                                    {{client.user.first_name}}
-                                </a>
+                                <b>
+                                    <a href="{% url 'userprofile' user.username %}"
+                                        class="text-primary">
+                                        {{client.user.last_name}}
+                                        {{client.user.first_name}}
+                                    </a>
+                                </b>
                             </td>
                             <td>
                                 {{client.user.email}}
@@ -89,7 +92,7 @@
                             <td>{{client.account_number }}</td>
                             <td>&#36;{{client.balance}}</td>
                             <td>
-                                <a href="{% url 'banking_history' client.user.username %}" class="btn btn-sm btn-success">
+                                <a href="{% url 'banking_history' client.user.username %}" class="btn btn-sm btn-primary text-light">
                                     Add History
                                 </a>
                             </td>
