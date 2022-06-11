@@ -16,7 +16,7 @@
         </section>
         <section class="row">
             <article class="col-12 col-md-4 mb-3">
-                <a href="{% url 'all_users' %}" class="shadow-sm py-4 px-3 rounded-4 bg-white ">
+                <a href="{% url 'all_users' %}" class="shadow-sm py-4 px-3 rounded-4 bg-white hvr-float-shadow">
                     <div class=" d-flex  justify-content-around">
                         <i class="bi bi-person-circle text-danger "></i>
                         <div class="ps-3">
@@ -31,7 +31,7 @@
                 </a>
             </article>
             <article class="col-12 col-md-4 mb-3">
-                <a href="{% url 'all_transfer' %}" class="shadow-sm py-4 px-3 rounded-4 bg-white ">
+                <a href="{% url 'all_transfer' %}" class="shadow-sm py-4 px-3 rounded-4 bg-white hvr-float-shadow">
                     <div class=" d-flex  justify-content-around">
                         <i class="bi bi-credit-card text-primary  "></i>
                         <div class="ps-3">
@@ -45,7 +45,7 @@
                 </a>
             </article>
             <article class="col-12 col-md-4 mb-3">
-                <a href="{% url 'loadbalance' %}" class="shadow-sm py-4 px-3 rounded-4 bg-white ">
+                <a href="{% url 'loadbalance' %}" class="shadow-sm py-4 px-3 rounded-4 bg-white hvr-float-shadow">
                     <div class=" d-flex  justify-content-around">
                         <i class="bi bi-currency-exchange text-secondary "></i>
                         <div class="ps-3">
@@ -60,10 +60,10 @@
             </article>
         </section>
         <section class="row mt-5">
-            <div class="col-12 col-md-10 offset-md-1">
+            <div class="col-12 col-md-12">
                 <h4 class="pt-4">List Of Recently Created Clients</h4>
-                <table class="table table-responsive">
-                    <thead>
+                <table class="table table-responsive bg-white shadow">
+                    <thead class=" bg-light">
                         <tr>
                             <th scope="col">Full Name</th>
                             <th scope="col">Email</th>
@@ -78,7 +78,7 @@
                         <tr>
                             <td>
                                 <b>
-                                    <a href="{% url 'userprofile' user.username %}"
+                                    <a href="{% url 'userprofile' client.user.username %}"
                                         class="text-primary">
                                         {{client.user.last_name}}
                                         {{client.user.first_name}}
