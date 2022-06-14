@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'clients',
     'crispy_forms',
     'django_countries',
+    'anymail',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -183,19 +184,25 @@ MESSAGE_TAGS = {
 
 
 # EMAIL SETUPS
-EMAIL_HOST = 'smtp.mailgun.org'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER_BOI')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD_BOI')
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER_BOI')
+# EMAIL_HOST = 'smtp.mailgun.org'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER_BOI')
+# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD_BOI')
+# EMAIL_USE_TLS = True
+# DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER_BOI')
+
+ANYMAIL = {
+    "MAILGUN_API_KEY": os.environ.get("MAILGUN_API_KEY"),
+    "MAILGUN_SENDER_DOMAIN": os.environ.get("MAILGUN_SENDER_DOMAIN"),
+}
+EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
+DEFAULT_FROM_EMAIL = "contact@boiworldwide.com"
+SERVER_EMAIL = "contact@mg.boiworldwide.com"
 
 # Setting up emails
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 # setting environmental variables for S3
-
 AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID_BOI")
 AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY_BOI")
 AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME_BOI")
