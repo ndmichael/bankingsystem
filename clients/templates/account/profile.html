@@ -141,10 +141,10 @@
                                                     {{history.description}}
                                                 </td>
                                                 <td>
-                                                    {% if history.record == 'debit' %} &#36;{{history.amount}} {% endif %}
+                                                    {% if history.record == 'debit' %} &#36;{{history.amt_aft_charges}} {% endif %}
                                                 </td>
                                                 <td>
-                                                    {% if history.record == 'credit' %} &#36;{{history.amount}} {% endif %}
+                                                    {% if history.record == 'credit' %} &#36;{{history.amt_aft_charges}} {% endif %}
                                                 </td>
                                                 <td>
                                                     &#36;{{history.balance}}
