@@ -2,10 +2,12 @@ from django.shortcuts import render,  redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .models import BankingHistory
+from clients.models import Client
 from .forms import ContactForm, TransferForm, LoadBalanceForm, AddHistoryForm
 from django.contrib.auth.decorators import login_required
 from clients.models import Transfer, Client
 from django.core.mail import send_mail
+from decimal import Decimal
 
 # Create your views here.
 
@@ -20,12 +22,19 @@ def invest(request):
 
 def banking_history(request, username):
     user = User.objects.get(username=username)
+    client = Client.objects.get(user=user)
     if request.method == "POST":
-        form = AddHistoryForm(request.POST)
+        form = AddHistoryForm(request.POST)   
         if form.is_valid():
+            record = form.cleaned_data['record']
             set_form = form.save(commit=False)
             set_form.user = user
-            set_form.save()
+            set_form.balance = client.balance            
+            set_form.save() 
+            current_balance = BankingHistory.objects.all().order_by("-transaction_date").first()
+            client.balance = current_balance.balance                           
+            client.save()
+
             messages.success(request, f"banking history added.")
             return redirect(
                 "banking_history", user.username
@@ -51,7 +60,7 @@ def contact(request):
                 subject,
                 message,
                 email,
-                ['mickeyjayblest@gmail.com', 'contact@boiworldwide.com']
+                ['MICKEY@boiworldwide.com']
             )
             messages.success(request,'Mail successfully sent.');
             redirect('contact')
