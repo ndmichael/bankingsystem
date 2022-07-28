@@ -140,10 +140,10 @@
                                                 <td>
                                                     {{history.description}}
                                                 </td>
-                                                <td>
+                                                <td class="text-danger">
                                                     {% if history.record == 'debit' %} &#36;{{history.amt_aft_charges}} {% endif %}
                                                 </td>
-                                                <td>
+                                                <td class="text-success">
                                                     {% if history.record == 'credit' %} &#36;{{history.amt_aft_charges}} {% endif %}
                                                 </td>
                                                 <td>
