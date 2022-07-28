@@ -30,8 +30,8 @@ class LoadBalanceForm(forms.Form):
 
 class AddHistoryForm(forms.ModelForm):
     transaction_date = forms.DateField(widget=DateInput)
-    description = forms.CharField(widget=forms.Textarea(attrs={'name':'body', 'rows':'3'}))
+    description = forms.CharField(required=False, widget=forms.Textarea(attrs={'name':'body', 'rows':'3'}))
     class Meta:
         model = BankingHistory
-        fields = ['record','amount','balance', 'transaction_date', 'description']
+        fields = ['record','amount', 'transaction_date', 'description']
     
