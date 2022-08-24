@@ -197,6 +197,7 @@ ANYMAIL = {
 }
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
 DEFAULT_FROM_EMAIL = "contact@boiworldwide.com"
+DEFAULT_FROM = "boiworldwide"
 SERVER_EMAIL = "contact@mg.boiworldwide.com"
 
 # Setting up emails
