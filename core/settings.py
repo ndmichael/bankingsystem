@@ -32,7 +32,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY_BOIW")
 DEBUG = os.environ.get("DEBUG_VALUE") == "True"
 
 SITE_ID = 1
-ALLOWED_HOSTS = ['127.0.0.1','localhost','www.boiworldwide.com', 'boiworldwide.com', '*']
+ALLOWED_HOSTS = ['127.0.0.1','localhost', 'boiworldwide.com', 'web-production-07ec.up.railway.app']
 
 
 # Application definition
