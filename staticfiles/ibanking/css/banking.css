@@ -2,6 +2,18 @@
 css for the index boxes
 */
 
+.navbar-light {
+    padding: 10px 0 !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    padding: 10px;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #1b28dd;
+}
+
 #index-main {
     min-height: 75vh;
     padding-top: 7vh;
@@ -119,4 +131,9 @@ footer a {
 
 #staffadmin a .bi {
     font-size: 3rem;
+}
+
+.table th {
+    font-weight: 700;
+    font-size: 16px;
 }
