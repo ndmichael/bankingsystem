@@ -101,7 +101,7 @@ def register(request):
             messages.success(
                 request, f"Account has been created for {username} you  can now login."
             )
-            return redirect("adminpage")
+            return redirect("all_users")
     else:
         u_form = UserForm()
         c_form = ClientRegisterForm()
