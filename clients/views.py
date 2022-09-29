@@ -86,9 +86,9 @@ def register(request):
             username = u_form.cleaned_data.get("username")
 
             # EMAILING 
-            subject = f"Account Creation"
+            '''subject = f"Account Creation"
             message = f"""'success', Account has been created for {username}.
-                password: {{}}
+                password:....
             """
             sender = "mickeyjayblest@gmail.com"
             send_mail(
@@ -96,12 +96,12 @@ def register(request):
                 message,
                 'mickeyjayblest@gmail.com',
                 ['ukejemicheal@gmail.com']
-            )
+            )'''
 
             messages.success(
                 request, f"Account has been created for {username} you  can now login."
             )
-            return redirect("all_users")
+            return redirect("adminpage")
     else:
         u_form = UserForm()
         c_form = ClientRegisterForm()
