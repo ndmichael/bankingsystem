@@ -7,12 +7,12 @@ from .views import (
 
 
 urlpatterns = [
-    path("profile/<str:username>", profile, name="userprofile"),
-    path("users/admin", admin, name="adminpage"),
-    path("users/all", all_users, name="all_users"),
+    path("profile/<str:username>/", profile, name="userprofile"),
+    path("users/admin/", admin, name="adminpage"),
+    path("users/all/", all_users, name="all_users"),
     path("all/transfers/", all_transfers, name="all_transfer"),
     path("users/register/", register, name="register"),
-    path("users/update/<str:username>", update_users, name="update_user"),
+    path("users/update/<str:username>/", update_users, name="update_user"),
     path("users/changepin/", change_pin, name="change_pin"),
     path("profile/changepassword/<int:id>/", change_password, name="change_password"),
 ]
