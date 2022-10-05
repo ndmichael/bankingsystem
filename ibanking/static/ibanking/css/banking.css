@@ -103,7 +103,7 @@ i.bi {
 
 #upToo {
     min-height: 100vh;
-    padding-top: 15vh;
+    padding: 6em;
 }
 
 .carousel-dark .carousel-indicators [data-bs-target] {
