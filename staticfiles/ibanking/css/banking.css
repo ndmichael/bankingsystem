@@ -2,6 +2,29 @@
 css for the index boxes
 */
 
+h1,
+h2,
+h3 {
+    font-family: 'Roboto Slab';
+    font-weight: bold;
+    font-style: bold;
+}
+
+h4,
+h5,
+h6 {
+    font-family: 'Roboto Slab';
+    font-weight: normal;
+    font-style: normal;
+}
+
+p {
+    font-family: 'Roboto Slab';
+    font-weight: light;
+    font-style: light;
+    color: #757575;
+}
+
 .navbar-light {
     padding: 10px 0 !important;
 }
@@ -80,7 +103,7 @@ i.bi {
 
 #upToo {
     min-height: 100vh;
-    padding-top: 15vh;
+    padding: 6em;
 }
 
 .carousel-dark .carousel-indicators [data-bs-target] {
