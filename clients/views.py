@@ -160,15 +160,15 @@ def all_transfers(request):
             transfer.is_success = True
             transfer.save()
             # EMAILING 
-            subject = f"Transfer Confirmation."
-            message = f"'success', Account has been created for {transfer.user.username}."
-            sender = "mickeyjayblest@gmail.com"
-            send_mail(
-                subject,
-                message,
-                'mickeyjayblest@gmail.com',
-                [transfer.user.email]
-            )
+            # subject = f"Transfer Confirmation."
+            # message = f"'success', Account has been created for {transfer.user.username}."
+            # sender = "mickeyjayblest@gmail.com"
+            # send_mail(
+            #     subject,
+            #     message,
+            #     'mickeyjayblest@gmail.com',
+            #     [transfer.user.email]
+            # )
             messages.success(
                 request, f"Transfer with id: {transfer_id} has been confirmed."
             )
