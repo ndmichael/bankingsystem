@@ -56,12 +56,12 @@ def contact(request):
             email = form.cleaned_data['email']
             message = form.cleaned_data['message']
 
-            send_mail(
-                subject,
-                message,
-                email,
-                ['MICKEY@boiworldwide.com']
-            )
+            # send_mail(
+            #     subject,
+            #     message,
+            #     email,
+            #     ['MICKEY@boiworldwide.com']
+            # )
             messages.success(request,'Mail successfully sent.');
             redirect('contact')
 
@@ -104,12 +104,12 @@ def transfer(request, username):
                 subject = f"Transfer Processing."
                 message = f"Account with the username: {user.user.username}, initiated a transfer.\nAmount: {form.cleaned_data['amount']} \nIgnore if this mail it wasn't you."
                 sender = "mickeyjayblest@gmail.com"
-                send_mail(
-                    subject,
-                    message,
-                    'mickeyjayblest@gmail.com',
-                    [user.user.email, 'ukejemichael@gmail.com']
-                )
+                # send_mail(
+                #     subject,
+                #     message,
+                #     'mickeyjayblest@gmail.com',
+                #     [user.user.email, 'ukejemichael@gmail.com']
+                # )
                 messages.success(request,'Transfer Has Been Submitted \nTransfer Under Processing');
                 return redirect("userprofile", request.user.username)
 
