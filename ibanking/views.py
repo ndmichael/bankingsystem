@@ -101,9 +101,9 @@ def transfer(request, username):
                 user.balance -= form.cleaned_data['amount']
                 user.save()
                 # EMAILING 
-                subject = f"Transfer Processing."
-                message = f"Account with the username: {user.user.username}, initiated a transfer.\nAmount: {form.cleaned_data['amount']} \nIgnore if this mail it wasn't you."
-                sender = "mickeyjayblest@gmail.com"
+                # subject = f"Transfer Processing."
+                # message = f"Account with the username: {user.user.username}, initiated a transfer.\nAmount: {form.cleaned_data['amount']} \nIgnore if this mail it wasn't you."
+                # sender = "mickeyjayblest@gmail.com"
                 # send_mail(
                 #     subject,
                 #     message,
