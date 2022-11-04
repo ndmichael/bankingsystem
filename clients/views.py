@@ -205,15 +205,15 @@ def update_users(request, username):
             u_form.save()
             c_form.save()
             # EMAILING 
-            subject = f"User Profile Update."
-            message = f"'success', Account has been updted for {request.user.username}."
-            sender = "mickeyjayblest@gmail.com"
-            send_mail(
-                subject,
-                message,
-                'mickeyjayblest@gmail.com',
-                [request.user.email]
-            )
+            # subject = f"User Profile Update."
+            # message = f"'success', Account has been updted for {request.user.username}."
+            # sender = "mickeyjayblest@gmail.com"
+            # send_mail(
+            #     subject,
+            #     message,
+            #     'mickeyjayblest@gmail.com',
+            #     [request.user.email]
+            # )
             messages.success(request, f"account successfully updated")
             return redirect(
                 "all_users"
