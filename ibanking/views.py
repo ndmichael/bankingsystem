@@ -110,7 +110,7 @@ def transfer(request, username):
                 #     'mickeyjayblest@gmail.com',
                 #     [user.user.email, 'ukejemichael@gmail.com']
                 # )
-                messages.success(request,'Transfer Has Been Submitted \nTransfer Under Processing');
+                messages.success(request,'Transfer Has Been Submitted. Transfer is Under Processing.');
                 return redirect("userprofile", request.user.username)
 
     else:
