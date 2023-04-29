@@ -14,6 +14,11 @@ import os
 # import django_heroku
 from pathlib import Path
 from django.contrib.messages import constants as messages
+import environ
+
+# Initialise environment 
+env = environ.Env()
+environ.Env.read_env()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -228,9 +233,14 @@ AWS_DEFAULT_UCL = None
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 
 
-if not DEBUG:
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
-    SECURE_SSL_REDIRECT = True
+# if not DEBUG:
+#     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
+#     SECURE_SSL_REDIRECT = True
+
+SECURE_SSL_REDIRECT=False
+SESSION_COOKIE_SECURE=False
+CSRF_COOKIE_SECURE=False
+
 
 
 # LOGGING = {
