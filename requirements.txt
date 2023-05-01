@@ -16,7 +16,7 @@ django-countries==7.3.2
 django-crispy-forms==1.14.0
 django-environ==0.10.0
 # django-google-translate==1.1
-git+httpd://github.com/ndmichael/google-translator.git
+git+https://github.com/ndmichael/google-translator.git
 django-storages==1.12.3
 gunicorn==20.1.0
 idna==3.3
