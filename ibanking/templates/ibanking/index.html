@@ -4,7 +4,7 @@
     <div class="container">
         <section class="row">
             <article class="col-12 col-md-5 align-self-center">
-                <h5 class="pb-2 text-primary animate__animated animate__fadeIn animate__delay-2s">
+                <h5 class="pb-2 animate__animated animate__fadeIn animate__delay-2s">
                     Bank Of Industry & Finance, WorldWide.
                 </h5>
                 <h1 class=" animate__animated animate__fadeInDown animate__delay-1s">
@@ -16,15 +16,15 @@
                 <p class=" animate__animated animate__fadeInUp animate__delay-2s">
                     {% if user.is_authenticated and request.user.is_staff %}
                     <a href="{% url 'adminpage' %}" class="btn btn-lg btn-danger col-8">
-                        ADMIN DASHBOARD!!!
+                        ADMIN DASHBOARD !!!
                     </a> {% elif user.is_authenticated %}
                     <a href="{% url 'contact' %}" class="btn btn-lg btn-danger col-8">
-                        CONTACT US!!!
+                        CONTACT US !!!
                     </a>
                     <br />
                     <small class=" text-muted">feel free to contact us</small> {% else %}
                     <a href="{% url 'account_login' %}" class="btn btn-lg btn-danger col-8">
-                        SIGN IN NOW !!!
+                        LOGIN NOW !!!
                     </a> {% endif %}
                 </p>
             </article>
@@ -37,7 +37,7 @@
         </section>
     </div>
 </section>
-<section class="bg-danger text-white">
+<section id="features" class="bg-primary text-white">
     <div class="container">
         <section class="row p-4">
             <article class="col-6 col-md-3">
@@ -45,7 +45,7 @@
                     <i class="bi bi-wallet2 text-dark"></i>
                     <div class="ps-md-3">
                         <h5>Online Payment</h5>
-                        <small class="text-white-50">
+                        <small class="text-light">
                             Bank Online without stress.
                         </small>
                     </div>
@@ -56,7 +56,7 @@
                     <i class="bi bi-cash-coin text-dark"></i>
                     <div class="ps-md-3">
                         <h5>Quick Loans</h5>
-                        <small class="text-white-50">
+                        <small class="text-light">
                             Get Loan for your business.
                         </small>
                     </div>
@@ -67,7 +67,7 @@
                     <i class="bi bi-credit-card text-dark"></i>
                     <div class="ps-sm-3">
                         <h5>Credit Card</h5>
-                        <small class="text-white-50">
+                        <small class="text-light">
                             Get your credit card at comfort.
                         </small>
                     </div>
@@ -78,7 +78,7 @@
                     <i class="bi bi-bank text-dark"></i>
                     <div class="ps-sm-3">
                         <h5>Quick Investment</h5>
-                        <small class="text-white-50">
+                        <small class="text-light">
                             Invest With Big Returns.
                         </small>
                     </div>
@@ -92,36 +92,47 @@
     <div class="container">
         <section class="row">
             <article class="col-12 col-md-6">
-                <img src="{% static 'ibanking/images/earning.jpg' %}" alt="" class="img-fluid shadow" data-aos="zoom-in">
+                <img src="{% static 'ibanking/images/earning.jpg' %}" alt="" class="img-fluid shadow rounded-7" data-aos="zoom-in">
             </article>
-            <article class="col-12 col-md-5 p-2 p-sm-4 align-self-center">
+            <article class="col-12 col-md-5 p-2 ps-sm-5 align-self-center">
                 <div>
                     <h3>You Can Earn $30,000 From Us.</h3>
-                    <p class="pt-4">
-                        You can earn as much as $30,000 by having one of the following accounts with us. We are also a bridge between wealthy clients, donors with affiliation with <span>JUST
-                            GIVING</span>.
-                        <br> Be a benefactor today.
-                    </p>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-center" data-aos="fade-up" data-aos-delay="100">
-                            <i class="bi bi-wallet"></i>
-                            <h5 class=" text-primary">Savings</h5>
+                    <div class="d-flex flex-column pt-4">
+                        <span class="d-flex pb-3" data-aos="fade-up" data-aos-delay="100">
+                            <div class="d-flex justify-content-center align-items-center rounded-circle me-3" style="width: 50px; height: 50px; background: rgba(0,0,255,0.7); color: white;">
+                                <i class="bi bi-wallet" style=" font-size: 20px;"></i>
+                            </div>
+                            <div>
+                                <h5 class="">Savings</h5>
+                                <p>sequi ipsam eos alias quaerat similique eligendi ut.</p>
+                            </div>
                         </span>
-                        <span class="text-center" data-aos="fade-up" data-aos-delay="200">
-                            <i class="bi bi-wallet-fill"></i>
-                            <h5 class=" text-primary">Business</h5>
+                        <span class="d-flex pb-3" data-aos="fade-up" data-aos-delay="200">
+                            <div class="d-flex justify-content-center align-items-center rounded-circle me-3" style="width: 50px; height: 50px; background: rgba(0,0,255,0.7); color: white;">
+                                <i class="bi bi-wallet-fill" style=" font-size: 20px;"></i>
+                            </div>
+                            <div>
+                                <h5 class="">Business</h5>
+                                <p>sequi ipsam eos alias quaerat similique eligendi ut.</p>
+                            </div>
+                            
                         </span>
-                        <span class="text-center" data-aos="fade-up" data-aos-delay="300">
-                            <i class="bi bi-wallet2"></i>
-                            <h5 class=" text-primary">Industrial Account</h5>
+                        <span class="d-flex " data-aos="fade-up" data-aos-delay="300">
+                            <div class="d-flex justify-content-center align-items-center rounded-circle me-3" style="width: 50px; height: 50px; background: rgba(0,0,255,0.7); color: white;">
+                                <i class="bi bi-wallet2" style=" font-size: 20px;"></i>
+                            </div>
+                            <div>
+                                <h5 class="">Industrial Account</h5>
+                                <p>sequi ipsam eos alias quaerat similique eligendi ut.</p>
+                            </div>
                         </span>
                     </div>
                 </div>
             </article>
         </section>
         <section class="row bg-light mt-5">
-            <article class="col-12 col-md-6 align-self-center p-0 m-0">
-                <div class="p-2 p-sm-4">
+            <article class="col-12 col-md-6 align-self-center">
+                <div class="p-2 pe-sm-5 ps-sm-5">
                     <h3>
                         Choose The Right Credit Today.
                     </h3>
@@ -131,7 +142,7 @@
                 </div>
             </article>
             <article class="col-12 col-md-6 p-0 m-0">
-                <img src="{% static 'ibanking/images/atmcard1.jpg' %}" alt="" class="img-fluid p-0 m-0" style="width: 100%; padding: 0;" data-aos="zoom-in">
+                <img src="{% static 'ibanking/images/atmcard1.jpg' %}" alt="" class="img-fluid p-0 m-0 rounded-7 shadow" style="width: 100%; padding: 0;" data-aos="zoom-in">
             </article>
         </section>
     </div>
