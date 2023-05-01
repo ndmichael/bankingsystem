@@ -5,24 +5,21 @@ css for the index boxes
 h1,
 h2,
 h3 {
-    font-family: 'Roboto Slab';
     font-weight: bold;
     font-style: bold;
+    color: black;
 }
 
 h4,
 h5,
 h6 {
-    font-family: 'Roboto Slab';
     font-weight: normal;
     font-style: normal;
+    color: black;
 }
 
 p {
-    font-family: 'Roboto Slab';
-    font-weight: light;
-    font-style: light;
-    color: #757575;
+    font-size: 16px;
 }
 
 .navbar-light {
@@ -30,7 +27,9 @@ p {
 }
 
 .navbar-light .navbar-nav .nav-link {
-    padding: 10px;
+    padding: 5px 15px;
+    color: black;
+    font-weight: bold;
 }
 
 .navbar-light .navbar-nav .nav-link:hover {
@@ -55,13 +54,17 @@ i.bi {
     font-size: 30px;
 }
 
+#features h5{
+    color: white;
+}
+
 
 /*
 * Quick tips
 */
 
 #earning {
-    padding-top: 4.5em;
+    padding-top: 6em;
 }
 
 #quickTip {
@@ -79,7 +82,7 @@ i.bi {
 */
 
 #testimonial {
-    padding-top: 5.5em;
+    padding-top: 6em;
 }
 
 #testimonial img {
