@@ -163,3 +163,22 @@ footer a {
     font-weight: 700;
     font-size: 16px;
 }
+
+.key-features{
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.key-features i{
+    font-size: 24px;
+}
+
+#key-features  h6,  #key-features h4{
+    color: #FFF;
+}
