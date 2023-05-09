@@ -30,11 +30,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'django-insecure-1fqryc($ii8hjr0(thfoa$z$9qr8st#h8&7pp1i-w@t%g&z8o9'
-SECRET_KEY = os.environ.get("SECRET_KEY_BOIW")
+SECRET_KEY = env('SECRET_KEY_BOIW')
 # print(SECRET_KEY)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG_VALUE") == "True"
+DEBUG = env('DEBUG_VALUE')
+
 
 SITE_ID = 1
 ALLOWED_HOSTS = ['127.0.0.1','localhost', 'boiworldwide.com', 'web-production-07ec.up.railway.app']
@@ -105,10 +106,10 @@ DATABASES = {
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'XjwA4GajylCH5dhNmgCD',
-        'HOST': 'containers-us-west-90.railway.app',
-        'PORT': '7772',
+        'USER': env('PGUSER'),
+        'PASSWORD': env('PGPASSWORD'),
+        'HOST': env('PGHOST'),
+        'PORT': env('PGPORT'),
 
     }
 }
@@ -218,9 +219,9 @@ SERVER_EMAIL = "contact@mg.boiworldwide.com"
 # EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 # setting environmental variables for S3
-AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID_BOI")
-AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY_BOI")
-AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME_BOI")
+AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID_BOI")
+AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY_BOI")
+AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME_BOI")
 
 
 AWS_S3_FILE_OVERWRITE = False
