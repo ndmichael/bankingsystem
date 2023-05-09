@@ -12,14 +12,12 @@
     <div class="row pb-4">
         <div class="col-12 col-sm-6 mx-auto text-center">
             <p class=" text-primary">Welcome Back.</p>
-            <small class="text-muted">you can login to your profile now.
-            </small>
         </div>
     </div>
     <div class="row">
-        <div class="offset-md-2 col-12 col-md-4 mx-auto">
-            <div class="shadow p-4 rounded">
-                <h1 class="h4 text-center">{% trans "Login Into BOI Worldwide" %}
+        <div class="offset-md-2 col-12 col-md-5 mx-auto">
+            <div class=" p-4 border border-dark rounded-7">
+                <h1 class="h4 text-center">{% trans "Login Into Account" %}
                 </h1>
                 <br />
                 <form class="login" method="POST" action="{% url 'account_login' %}">
@@ -27,7 +25,7 @@
                     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" /> {% endif %}
 
                     <div class="py-4">
-                        <button class="btn btn-danger btn-block primaryAction" type="submit">{% trans "Sign In" %}</button>
+                        <button class="btn btn-danger btn-lg btn-block primaryAction" type="submit">{% trans "Log In" %}</button>
                     </div>
                     <a class="button secondaryAction" href="{% url 'account_reset_password' %}">
                         {% trans "Forgot Password?" %}
