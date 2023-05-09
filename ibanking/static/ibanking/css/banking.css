@@ -116,12 +116,15 @@ i.bi {
 }
 
 footer p {
-    color: rgba(255, 255, 255, .7);
+    /* color: rgba(36, 36, 36, 0.7); */
+    margin: 7px !important;
+    padding-left: 10px;
+    
 }
 
 footer a {
-    color: rgba(255, 255, 255, .7);
-    ;
+    padding: 0 !important;
+    color: black;
 }
 
 
