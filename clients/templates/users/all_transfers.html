@@ -56,14 +56,16 @@
                                                 <td>
                                                     {% if not transfer.is_success %}
                                                     <span class="text-danger">pending
-                                                        {{transfer.id}}</span> {% else %}
+                                                        {{transfer.user}}</span> {% else %}
                                                     <span class="text-success">Success</span> {% endif %}
                                                 </td>
                                                 <td>
                                                     {% if not transfer.is_success %}
                                                     <form method="post">
                                                         {% csrf_token %}
-                                                        <input type="hidden" value="{{transfer.id}}" name="id"> {{form | crispy}}
+                                                        <input type="hidden" value="{{transfer.id}}" name="id">
+                                                        <input type="hidden" value="{{transfer.user.id}}" name="user">
+                                                        {{form | crispy}}
                                                         <button class="btn btn-sm btn-danger">
                                                             Confirm
                                                         </button>
