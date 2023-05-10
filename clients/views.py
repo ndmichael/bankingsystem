@@ -147,6 +147,7 @@ def all_users(request):
 
 @login_required
 def all_transfers(request):
+    
     if not request.user.is_staff:
         messages.error(
                 request, f"You do not have permission to access this page."
@@ -154,8 +155,16 @@ def all_transfers(request):
         return redirect("userprofile", request.user.username)
 
     if request.method == 'POST':
+
         transfer_id = request.POST.get('id')
+        user = request.POST.get('user')
+    
+
         transfer = get_object_or_404(Transfer, id=transfer_id)
+        user =  get_object_or_404(Client, user=user)
+        user.balance -= transfer.amount
+        user.save()
+        
         if request.POST.get('is_success'):
             transfer.is_success = True
             transfer.save()
