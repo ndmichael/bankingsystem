@@ -1,47 +1,49 @@
 {% extends 'ibanking/base.html' %}{% load static %} {% load crispy_forms_tags %} {% block content %}
 <section class="py-5" style="min-height: 100vh;">
     <div class="container">
-        <section class="row py-5">
-            <article class=" col-12 col-md-4 offset-md-2">
-                <h3>Sender's Information.</h3>
-                <p><span>Sender's Name: </span><b>{{user.last_name}}
-                        {{request.user.first_name}}</b> </p>
-                <p>Balance: <b>&#36;{{user.profile.balance}}</b></p>
-            </article>
-            <article class="col-12 col-md-4">
-                <p class="pt-2">
-                    Please make sure your IBAN (International Bank Account Number) Number and pin are correct.
-                </p>
-                <p>
-                    <span class="text-danger">Required for International
-                        Transfer</span> <br /> {{ user.profile.country}}51 SOUTH 212374 {{ user.profile.account_number}}
-                </p>
-            </article>
-        </section>
+        <section class="row py-5 px-3 bg-light">
+            <article class=" col-12 col-md-5 offset-md-1 align-self-center">
+                <div class="text-center">
+                    <div>
+                        <i class="bi bi-person-check text-danger" style="font-size:5em"></i>
+                        <h4>Sender's Information.</h4>
+                        <p><span>Sender's Name: </span><b class="text-dark">{{user.last_name}}
+                            {{request.user.first_name}}</b> </p>
+                        <p>Balance: <b class="text-dark">&#36;{{user.profile.balance}}</b></p>
+                    </div>
 
+                    <div>
+                        <p>
+                            <small>Please make sure your IBAN (International Bank Account Number) Number and pin are correct.</small>  
+                        </p>
+                        <p>
+                            <small class="text-danger">Required for International
+                                Transfer</small> <br /> {{ user.profile.country}}51 SOUTH 212374 {{ user.profile.account_number}}
+                        </p>
+                    </div>
+            </div>
+            </article>
 
-        <section class="row">
-            <article class="col-12 col-md-7 offset-md-2 mx-auto">
-                <form method="post" action="">
+            <article class="col-12 col-md-5 mx-auto bg-white p-sm-0 shadow-sm">
+                <div class="text-center bg-primary  p-3">
+                    <h4 class="text-white p-0 m-0">INTERNATIONAL TRANSFER FORM</h4>
+                </div>
+                <form method="post" action="" class="p-5">
                     {% csrf_token %}
                     <div class="row">
-                        <div class="form-group col-2 col-md-1 mb-2 text-end">
-                            <label for=""></label>
-                            <input type="text" value="&#36;" disabled class="text-primary" />
+                        <div class="form-group col-12 col-md-6 mb-3">
+                            {{form.amount|as_crispy_field}}             
                         </div>
-                        <div class="form-group col-10 col-md-5 mb-2">
-                            {{ form.amount|as_crispy_field }}
-                        </div>
-                        <div class="form-group col-12 col-md-6 mb-2">
+                        <div class="form-group col-12 col-md-6 mb-3">
                             {{ form.IBAN|as_crispy_field }}
                         </div>
-                        <div class="form-group col-10 col-md-10 mb-2">
+                        <div class="form-group col-10 col-md-9 mb-3">
                             {{ form.receivers_name|as_crispy_field }}
                         </div>
-                        <div class="form-group col-2 col-md-2 mb-2">
+                        <div class="form-group col-2 col-md-3 mb-3">
                             {{ form.pin|as_crispy_field }}
                         </div>
-                        <div class="form-group col-12 col-md-6 mb-2">
+                        <div class="form-group col-12 col-md-6 mb-4">
                             {{ form.beneficiary_account_number|as_crispy_field }}
                         </div>
                         <div class="form-group col-12 col-md-6">
@@ -52,13 +54,15 @@
                         </div>
 
                         <div class="pt-4">
-                            <button class="btn btn-lg btn-danger" type="submit">
+                            <button class="btn btn-lg btn-danger col-12" type="submit">
                                 SUBMIT TRANSFER
                             </button>
                         </div>
+                    </div>
                 </form>
             </article>
+
         </section>
-        </div>
+    </div>
 </section>
 {% endblock content %}
