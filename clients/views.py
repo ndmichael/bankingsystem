@@ -24,11 +24,13 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.views import LoginView
 from django.urls import reverse
 
+from .forms import CustomAuthenticationForm
+
 
 class CustomLoginView(LoginView):
-    # authentication_form = CustomAuthenticationForm
+    authentication_form = CustomAuthenticationForm
+        
 
-    pass
 
 # Create your views here.
 
