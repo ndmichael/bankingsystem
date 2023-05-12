@@ -21,6 +21,15 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.hashers import make_password
 
 
+from django.contrib.auth.views import LoginView
+from django.urls import reverse
+
+
+class CustomLoginView(LoginView):
+    # authentication_form = CustomAuthenticationForm
+
+    pass
+
 # Create your views here.
 
 
@@ -47,10 +56,9 @@ def profile(request, username):
 @login_required
 def admin(request):
     if not request.user.is_staff:
-        messages.error(
-                request, f"You do not have permission to access this page."
-            )
-        return redirect("/")
+        # return reverse('userprofile', kwargs={'username': request.user.username})
+        return redirect("userprofile", username=request.user.username)
+        
     clients = Client.objects.all().filter(user__is_active=True).order_by('-created')
     total_clients =  Client.objects.all().filter(user__is_active=True).count()
     pending_transfers =  Transfer.objects.all().filter(is_success=False).filter(user__is_active=True).count()
