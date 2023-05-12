@@ -19,13 +19,14 @@ from django.urls import re_path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
+from clients.views import CustomLoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('clients.urls')),
     path('', include('ibanking.urls')),
     path('accounts/', include('allauth.urls')),
-    path('accounts/admin/login/', auth_views.LoginView.as_view(template_name='account/admin_login.html', redirect_authenticated_user=True), name='admin_login'),
+    path('accounts/admin/login/', CustomLoginView.as_view(template_name='account/admin_login.html', redirect_authenticated_user=True), name='admin_login'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
