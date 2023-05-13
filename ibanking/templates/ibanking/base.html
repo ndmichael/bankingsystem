@@ -47,6 +47,7 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{% url 'account_logout' %}">Logout </a>
                     </li>
+
                     {% else %}
                     <li class="nav-item">
                         <a class="btn btn-sm btn-danger" href="{% url 'account_login' %}">
@@ -85,6 +86,23 @@
                     </li>
                 </ul>
                 {% endif %}
+
+                {% if user.is_authenticated and user.is_staff %}
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img class="img-fluid" style="height: 40px; width: 40px; object-fit: contain; object-position: top;" src="{{ request.user.profile.photo_url }}">
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item disabled" href="#">
+                                <b class="text-dark">{{request.user.username}}</b>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="{% url 'account_logout' %}">Logout </a>
+                        </ul>
+                    </li>
+                </ul>
+                {% else %}
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'invest' %}">
@@ -105,7 +123,7 @@
                     {% if user.is_authenticated %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <b>Welcome {{ request.user.last_name }}</b>
+                            <b>Welcome, {{ request.user.last_name }}</b>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{% url 'userprofile' request.user.username %}">
@@ -122,6 +140,7 @@
                     </li>
                     {% endif %}
                     </ul>
+                    {% endif %}
             </div>
         </div>
     </nav>
