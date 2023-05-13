@@ -22,7 +22,7 @@
     font-size: 1.7rem;
 }
 
-#profile li:hover{
+#profile .profile-action:hover{
     background:#2147bb !important;
     color: white;
 }
