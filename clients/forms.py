@@ -10,13 +10,17 @@ from . import models
 from django_countries import widgets, countries
 from random import randrange
 
-from django.contrib.auth.forms import AuthenticationForm, UsernameField
+from django.contrib.auth.forms import AuthenticationForm, UsernameField, forms
 
 
 class CustomAuthenticationForm(AuthenticationForm):
     username = UsernameField(
         label='Staff ID',
-        widget=forms.TextInput(attrs={'placeholder': 'staff id', 'class': 'mb-3'})
+        widget=forms.TextInput(attrs={'placeholder': 'staff id', 'class': ' form-control-lg mb-3'})
+    )
+    password = forms.CharField(
+        label='Password',
+        widget=forms.TextInput(attrs={'placeholder': 'password', 'class': ' form-control-lg mb-3'})
     )
 
 
