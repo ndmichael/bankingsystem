@@ -16,7 +16,7 @@ from django.contrib.auth.forms import AuthenticationForm, UsernameField, forms
 class CustomAuthenticationForm(AuthenticationForm):
     username = UsernameField(
         label='Staff ID',
-        widget=forms.TextInput(attrs={'placeholder': 'staff id', 'class': ' form-control-lg mb-3'})
+        widget=forms.TextInput(attrs={'placeholder': 'Admin Staff ID', 'class': ' form-control-lg mb-3'})
     )
     password = forms.CharField(
         label='Password',
