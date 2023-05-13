@@ -182,7 +182,7 @@ ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400
 # or any other page
 LOGIN_REDIRECT_URL = 'adminpage'
 # LOGIN_REDIRECT_URL = '/'
-ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/"
+ACCOUNT_LOGOUT_REDIRECT_URL = "/"
 
 ACCOUNT_FORMS = {"signup": "clients.forms.MyCustomSignupForm",
     "login": "clients.forms.SelfLoginForm"
