@@ -17,3 +17,12 @@
 #staffadmin a .bi {
     font-size: 3rem;
 }
+
+#profile .bi{
+    font-size: 1.7rem;
+}
+
+#profile .profile-action:hover{
+    background:#2147bb !important;
+    color: white;
+}
