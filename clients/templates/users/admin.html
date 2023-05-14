@@ -4,9 +4,13 @@
     <div class="container py-5">
         <section class="row py-4">
             <article class="col-8 col-md-6">
-                <h1 class="h3"><small>Welcome</small> <span class="text-danger">{{request.user.last_name}}</span>
-                </h1>
-                <p>Manage All <b>Accounts</b> Here.</p>
+                <div class="d-flex">
+                    <img class="img-fluid rounded-circle shadow" style="height: 100px; width: 100px; object-fit: cover;" src="{{ request.user.profile.photo_url }}">
+                    <span class="ps-4 align-self-center">
+                        <h5>{{request.user.first_name}} {{request.user.last_name}}</h5>
+                        <b class="text-danger">admin</b>
+                    </span>
+                </div>
             </article>
             <article class="col-4 col-md-6 text-end">
                 <a href="{% url 'register' %}" class=" btn btn-lg btn-danger" style=" color: white; display: inline-block;">
@@ -63,7 +67,7 @@
             <div class="col-12 col-md-12">
                 <h4 class="pt-4">List Of Recently Created Clients</h4>
                 <table class="table table-responsive bg-white shadow">
-                    <thead class=" bg-light">
+                    <thead class=" bg-primary text-white">
                         <tr>
                             <th scope="col">Full Name</th>
                             <th scope="col">Email</th>
