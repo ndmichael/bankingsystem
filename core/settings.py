@@ -34,7 +34,8 @@ SECRET_KEY = env('SECRET_KEY_BOIW')
 # print(SECRET_KEY)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG_VALUE')
+DEBUG = env('DEBUG')
+DEBUG = False
 
 
 SITE_ID = 1
