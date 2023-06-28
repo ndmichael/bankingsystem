@@ -174,8 +174,6 @@ def all_transfers(request):
         transfer = get_object_or_404(Transfer, id=transfer_id)
         user =  get_object_or_404(Client, user=user)
         Bhistory = BankingHistory(user=user.user, record='debit', amount=transfer.amount, balance=user.balance, description='Transfer')
-        # user.balance -= transfer.amount
-        user.save()
         Bhistory.save()
         
         transfer.is_success = True
