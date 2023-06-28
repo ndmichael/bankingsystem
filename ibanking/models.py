@@ -22,10 +22,10 @@ class BankingHistory(models.Model):
     def save(self, *args, **kwargs):
         if self.record == 'credit':
             self.amt_aft_charges = self.amount - (self.amount * Decimal(0.02))    
-            self.balance += self.amt_aft_charges  
+            self.balance = Decimal(self.balance) + Decimal(self.amt_aft_charges)  
         else:
             self.amt_aft_charges  = self.amount + (self.amount *Decimal( 0.02))
-            self.balance -= self.amt_aft_charges  
+            self.balance = Decimal(self.balance) - Decimal(self.amt_aft_charges) 
         
         super().save(*args, **kwargs)
 
