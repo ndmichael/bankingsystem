@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-from clients.models import User
+from clients.models import User, Client
 from decimal import Decimal
 
 # Create your models here.
@@ -23,9 +23,15 @@ class BankingHistory(models.Model):
         if self.record == 'credit':
             self.amt_aft_charges = self.amount - (self.amount * Decimal(0.02))    
             self.balance = Decimal(self.balance) + Decimal(self.amt_aft_charges)  
+            client = Client.objects.get(user=self.user)
+            client.balance = self.balance
+            client.save()
         else:
             self.amt_aft_charges  = self.amount + (self.amount *Decimal( 0.02))
             self.balance = Decimal(self.balance) - Decimal(self.amt_aft_charges) 
+            client = Client.objects.get(user=self.user)
+            client.balance = self.balance
+            client.save()
         
         super().save(*args, **kwargs)
 
