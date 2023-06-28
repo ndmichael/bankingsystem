@@ -41,7 +41,7 @@ def profile(request, username):
         User, username=username
     )  # getting the current user passed to it
     profile = Client.objects.filter(user=user)
-    transfers = Transfer.objects.filter(user=user)
+    transfers = Transfer.objects.filter(user=user, is_success=True)
     histories = BankingHistory.objects.filter(user=user).order_by('-transaction_date')[:10]
     total_transfers =  Transfer.objects.filter(user=user).count()
     print(total_transfers)
@@ -50,7 +50,8 @@ def profile(request, username):
         "profile": profile,
         'total_transfers': total_transfers,
         'histories': histories,
-        'title': 'profile'
+        'title': 'profile',
+        'transfers': transfers
     }
     return render(request, 'account/profile.html', context)
 
@@ -164,7 +165,7 @@ def all_transfers(request):
             )
         return redirect("userprofile", request.user.username)
 
-    if request.method == 'POST':
+    if request.method == 'POST' and request.POST.get('is_success') :
 
         transfer_id = request.POST.get('id')
         user = request.POST.get('user')
@@ -172,25 +173,26 @@ def all_transfers(request):
 
         transfer = get_object_or_404(Transfer, id=transfer_id)
         user =  get_object_or_404(Client, user=user)
-        user.balance -= transfer.amount
+        Bhistory = BankingHistory(user=user.user, record='debit', amount=transfer.amount, balance=user.balance, description='Transfer')
+        # user.balance -= transfer.amount
         user.save()
+        Bhistory.save()
         
-        if request.POST.get('is_success'):
-            transfer.is_success = True
-            transfer.save()
-            # EMAILING 
-            # subject = f"Transfer Confirmation."
-            # message = f"'success', Account has been created for {transfer.user.username}."
-            # sender = "mickeyjayblest@gmail.com"
-            # send_mail(
-            #     subject,
-            #     message,
-            #     'mickeyjayblest@gmail.com',
-            #     [transfer.user.email]
-            # )
-            messages.success(
-                request, f"Transfer with id: {transfer_id} has been confirmed."
-            )
+        transfer.is_success = True
+        transfer.save()
+        # EMAILING 
+        # subject = f"Transfer Confirmation."
+        # message = f"'success', Account has been created for {transfer.user.username}."
+        # sender = "mickeyjayblest@gmail.com"
+        # send_mail(
+        #     subject,
+        #     message,
+        #     'mickeyjayblest@gmail.com',
+        #     [transfer.user.email]
+        # )
+        messages.success(
+            request, f"Transfer with id: {transfer_id} has been confirmed."
+        )
     
     form = TransferSuccessForm()
 
