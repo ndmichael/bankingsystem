@@ -41,8 +41,8 @@ def profile(request, username):
         User, username=username
     )  # getting the current user passed to it
     profile = Client.objects.filter(user=user)
-    transfers = Transfer.objects.filter(user=user, is_success=True)
-    histories = BankingHistory.objects.filter(user=user).order_by('-transaction_date')[:10]
+    transfers = Transfer.objects.filter(user=user, is_success=True).order_by('dotf')[:10]
+    histories = BankingHistory.objects.filter(user=user).order_by('-transaction_date')[:20]
     total_transfers =  Transfer.objects.filter(user=user).count()
     print(total_transfers)
     context = {
