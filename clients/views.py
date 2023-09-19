@@ -26,6 +26,8 @@ from django.urls import reverse
 
 from .forms import CustomAuthenticationForm
 
+from django.core.paginator import Paginator
+
 
 class CustomLoginView(LoginView):
     authentication_form = CustomAuthenticationForm
@@ -62,7 +64,13 @@ def admin(request):
         # return reverse('userprofile', kwargs={'username': request.user.username})
         return redirect("userprofile", username=request.user.username)
         
-    clients = Client.objects.all().filter(user__is_active=True).order_by('-created')
+    # clients = Client.objects.all().filter(user__is_active=True).order_by('-created')
+
+    # setting up pagination
+    p = Paginator(Client.objects.filter(user__is_active=True).order_by('-created'), 7)
+    page = request.GET.get('page')
+    clients = p.get_page(page)
+
     total_clients =  Client.objects.all().filter(user__is_active=True).count()
     pending_transfers =  Transfer.objects.all().filter(is_success=False).filter(user__is_active=True).count()
     context ={
