@@ -155,10 +155,6 @@ footer a {
     background: seagreen;
 }
 
-#staffadmin a {
-    display: block;
-    color: inherit;
-}
 
 #staffadmin a .bi {
     font-size: 3rem;
