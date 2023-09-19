@@ -155,6 +155,12 @@ footer a {
     background: seagreen;
 }
 
+#staffadmin .actions{
+    display: block;
+    overflow: hidden;
+    text-decoration: none;
+    background: white;
+}
 
 #staffadmin a .bi {
     font-size: 3rem;
