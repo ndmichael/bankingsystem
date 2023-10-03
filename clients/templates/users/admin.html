@@ -20,7 +20,7 @@
         </section>
         <section class="row">
             <article class="col-12 col-md-4 mb-3">
-                <a href="{% url 'all_users' %}" class="shadow-sm py-4 px-3 rounded-4 bg-white hvr-float-shadow">
+                <a href="{% url 'all_users' %}" class="shadow-sm py-4 px-3 rounded-4 bg-white hvr-float-shadow actions">
                     <div class=" d-flex  justify-content-around">
                         <i class="bi bi-person-circle text-danger "></i>
                         <div class="ps-3">
@@ -35,7 +35,7 @@
                 </a>
             </article>
             <article class="col-12 col-md-4 mb-3">
-                <a href="{% url 'all_transfer' %}" class="shadow-sm py-4 px-3 rounded-4 bg-white hvr-float-shadow">
+                <a href="{% url 'all_transfer' %}" class="shadow-sm py-4 px-3 rounded-4 bg-white hvr-float-shadow actions">
                     <div class=" d-flex  justify-content-around">
                         <i class="bi bi-credit-card text-primary  "></i>
                         <div class="ps-3">
@@ -49,7 +49,7 @@
                 </a>
             </article>
             <article class="col-12 col-md-4 mb-3">
-                <a href="{% url 'loadbalance' %}" class="shadow-sm py-4 px-3 rounded-4 bg-white hvr-float-shadow">
+                <a href="{% url 'loadbalance' %}" class="shadow-sm py-4 px-3 rounded-4 bg-white hvr-float-shadow actions">
                     <div class=" d-flex  justify-content-around">
                         <i class="bi bi-currency-exchange text-secondary "></i>
                         <div class="ps-3">
@@ -108,6 +108,27 @@
                         {% endfor %}
                     </tbody>
                 </table>
+                <!-- pagination added to clients -->
+                <hr>
+                <div class="pt-3 text-center">
+                    {% if clients.paginator.num_pages > 1 %}
+                        {% if clients.has_previous %}
+                        <a class="btn btn-outline-danger" href="?page=1">First</a>
+                        <a class="btn btn-outline-danger" href="?page={{ clients.previous_page_number }}">Previous</a>
+                        {% endif %}
+                        {% for num in clients.paginator.page_range %}
+                            {% if clients.number == num %}
+                                <a class="btn btn-primary" href="?page={{ num }}">{{ num }}</a>
+                            {% elif num > clients.number|add:'-3' and num < clients.number|add:'3' %}
+                                <a class="btn btn-outline-danger" href="?page={{ num }}">{{ num }}</a>
+                            {% endif %}
+                        {% endfor %}
+                        {% if clients.has_next %}
+                            <a class="btn btn-outline-primary btn-lg" href="?page={{ clients.next_page_number }}">Next</a>
+                            <a class="btn btn-danger" href="?page={{ clients.paginator.num_pages }}">Last</a>
+                        {% endif %}
+                    {% endif %}
+                </div>
             </div>
         </section>
     </div>
