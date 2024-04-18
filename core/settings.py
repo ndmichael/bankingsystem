@@ -39,7 +39,8 @@ DEBUG = env('DEBUG')
 
 
 SITE_ID = 1
-ALLOWED_HOSTS = ['127.0.0.1','localhost', 'boiworldwide.com', 'web-production-07ec.up.railway.app']
+ALLOWED_HOSTS = ['127.0.0.1','localhost', 'boiworldwide.com','www.boiworldwide.com', 'web-production-07ec.up.railway.app']
+# ALLOW_HOSTS = ['*']
 # ALLOWED_HOSTS = ['127.0.0.1','localhost']
 
 
